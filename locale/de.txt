@@ -1,0 +1,89 @@
+# Translation by theFox
+
+### nodes_straw.lua ###
+layer of straw = Strohschicht
+straw bale = Strohballen
+straw = Stroh
+threshing floor = Dreschboden
+Threshing floor = Dreschboden
+Threshing floor (owned by %s) = Dreschboden (gehoert %s)
+Harvested wheat: = Geernteter Weizen
+Straw: = Stroh
+Seeds: = Koerner
+Owner: %s = Besitzer: %s
+Punch threshing floor with a stick = Schlage mit einem Stock auf den Dreschboden 
+to get straw and seeds from wheat. = um Stroh und Koerner vom Weizen zu bekommen.
+You have threshed %s wheat (%s are left). =  Du hast %s Weizenaehren gedroschen (%s bleiben uebrig).
+You have threshed the last %s wheat. =  Du hast die letzten %s Weizenaehren gedroschen.
+mill, powered by punching = Muehle, durch Schlagen antreiben
+Mill, powered by punching = Muehle, durch Schlagen antreiben
+Mill, powered by punching (owned by %s) = Muehle, durch Schlagen antreiben (gehoert %s)
+Wheat seeds: = Weizenkoerner
+Flour: = Mehl
+Mill = Muehle
+Owner: %s = Besitzer: %s
+Punch this hand-driven mill = Schlage auf diese handbetriebene Muehle
+to convert wheat seeds into flour. = um Weizenkoerner in Mehl umzuwandeln.
+You have ground some %s (%s are left). = Du hast %s gemahlen (%s bleiben uebrig).
+You have ground the last %s. = Du hast das letzte %s gemahlen.
+That was enough sleep for now. You stand up again. = Genug geschlafen. Du stehst wieder auf.
+You lie down and take a nap. A right-click will wake you up. = Du legst dich hin und machst ein Nickerchen. Ein rechtsklick weckt dich.
+Aaah! What a comftable bed. A second right-click will let you sleep. = Aaah! Was fuer ein bequemes bett. Ein zweiter rechtsklick wird dich schlafen lassen.
+Aaah! What a comftable mat. A second right-click will let you sleep. = Aaah! Was fuer eine bequeme Matte. Ein zweiter rechtsklick wird dich schlafen lassen.
+Comftable, but not good enough for a nap. Right-click again if you want to get back up. = Bequem, aber nicht gut genug fuer ein Nickerchen. Druecke die rechte Maustaste, wenn du wieder aufstehen moechtest.
+That was enough sitting around for now. You stand up again. = Genug rumgesessen. Du stehst wieder auf.
+ straw =  Stroh
+ seeds =  Koerner
+
+### putter.lua ###
+Putter = Einlagerer
+A putter that puts items laying on top into a chest below. = Ein Einlagerer, der Gegenstaende die auf ihm liegen einsammelt und in eine Kiste unten drunter tut.
+Right-click the putter or send a mesecon signal to it, to switch it on or off. = Rechtsklicke den Einlagerer oder sende ein mesecon Signal an ihn um in ein oder aus zu schalten.
+
+### vacuum_putter.lua ###
+Vacuuming Putter = Saugender Einlagerer
+A vacuuming putter that collects items in its range and puts them into a chest below. = Ein Saugender Einlagerer, der Gegenstaende in seiner Reichweite einsammelt und in eine Kiste unten drunter tut.
+Right-click the vacuuming putter or send a mesecon signal to it, to switch it on or off. = Rechtsklicke den Saugenden Einlagerer oder sende ein mesecon Signal an ihn um in ein oder aus zu schalten.
+
+### vacuum.lua ###
+Vacuum = Sauger
+A vacuum that collects items in its range. = Ein Sauger, der Gegenstaende in seiner reichweite einsammelt.
+Right-click the vacuum or send a mesecon signal to it, to switch it on or off. = Rechtsklicke den Sauger oder sende ein mesecon signal an ihn um in ein oder aus zu schalten.
+
+### thresher.lua ###
+threshing machine = drescher
+Threshing machine = drescher
+Threshing machine (owned by %s) = drescher (geheoert %s)
+injectMode = eingabeModus
+tube injection - off = Rohrpost Eingabe - aus
+tube injection - on  = Rohrpost Eingabe - an 
+A threshing machine that makes straw and wheat seed out of wheat. = Ein Drescher, der Stroh und Weizenkoerner aus Weizen macht.
+Right-click the threshing machine to access the inventory. If you use the pipeworks mod there will be a button too. You can use the button to make the threshing machine inject the outputs into a tube. = Rechtsklicke den Drescher um das inventar zu sehen. Wenn du die pipeworks mod verwendest wird dort auch ein Button sein. Du kannst den button benutzen, um den Drescher die Produkte in Rohre eingeben zu lassen.
+
+### storage_tank.lua ###
+Storage Tank = Tank
+full = gefuellt
+water = Wasser
+lava = Lava
+
+### rope.lua ###
+Rope = Seil
+A rope you can climb up. = Ein Seil an dem man hochklettern kann.
+Just stand inside and jump. = Einfach hineinstellen und Springen.
+Rope from Ropebox = Seil einer Seilrolle
+A rope that has been created from a ropebox. = Ein Seil, welches von einer Seilrolle erstellt wurde.
+Ropebox = Seilrolle
+A ropebox that will create ropes under itself. = Eine Seilrolle, welche ein Seil herunterlässt.
+Place it somewhere and you will get a nice long rope. = Plaziere sie und du wirst ein schoen langes Seil erhalten.
+
+### items.lua ###
+Small Steel Gear = Kleines Stahl Zahnrad
+Small Gold Gear = Kleines Gold Zahnnrad
+Small Diamond Gear = Kleines Diamant Zahnrad
+
+### injector.lua ###
+Self-Contained Injector = Selbstversorger-Injektor
+Itemwise = Einzelstuecke
+Stackwise = Ganzer Stapel
+A machine that injects items put into it into a tube. =  Eine Machine die Gegenstaende in Rohre injiziert.
+Right-click the injector to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = Rechtsklicke den Injektor um das inventar zu sehen. Mit dem Button im Inventar kannst du einstellen, ob Einzelstuecke oder ganze Stapel injiziert werden sollen.

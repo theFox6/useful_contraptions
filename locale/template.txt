@@ -1,0 +1,89 @@
+# Translation by <your name>
+
+### nodes_straw.lua ###
+layer of straw = 
+straw bale = 
+straw = 
+threshing floor = 
+Threshing floor = 
+Threshing floor (owned by %s) = 
+Harvested wheat: = 
+Straw: = 
+Seeds: = 
+Owner: %s = 
+Punch threshing floor with a stick = 
+to get straw and seeds from wheat. = 
+You have threshed %s wheat (%s are left). =  
+You have threshed the last %s wheat. =  
+mill, powered by punching = 
+Mill, powered by punching = 
+Mill, powered by punching (owned by %s) = 
+Wheat seeds: = 
+Flour: = 
+Mill = 
+Owner: %s = 
+Punch this hand-driven mill = 
+to convert wheat seeds into flour. = 
+You have ground some %s (%s are left). = 
+You have ground the last %s. = 
+That was enough sleep for now. You stand up again. = 
+You lie down and take a nap. A right-click will wake you up. = 
+Aaah! What a comftable bed. A second right-click will let you sleep. = 
+Aaah! What a comftable mat. A second right-click will let you sleep. = 
+Comftable, but not good enough for a nap. Right-click again if you want to get back up. = 
+That was enough sitting around for now. You stand up again. = 
+ straw =  
+ seeds =  
+
+### putter.lua ###
+Putter = 
+A putter that puts items laying on top into a chest below. = 
+Right-click the putter or send a mesecon signal to it, to switch it on or off. = 
+
+### vacuum_putter.lua ###
+Vacuuming Putter = 
+A vacuuming putter that collects items in its range and puts them into a chest below. = 
+Right-click the vacuuming putter or send a mesecon signal to it, to switch it on or off. = 
+
+### vacuum.lua ###
+Vacuum = 
+A vacuum that collects items in its range. =
+Right-click the vacuum or send a mesecon signal to it, to switch it on or off. =
+
+### thresher.lua ###
+threshing machine = 
+Threshing machine = 
+Threshing machine (owned by %s) = 
+injectMode = 
+tube injection - off = 
+tube injection - on  = 
+A threshing machine that makes straw and wheat seed out of wheat. = 
+Right-click the threshing machine to access the inventory. If you use the pipeworks mod there will be a button too. You can use the button to make the threshing machine inject the outputs into a tube. = 
+
+### storage_tank.lua ###
+Storage Tank = 
+full = 
+water =
+lava =
+
+### rope.lua ###
+Rope = 
+A rope you can climb up. = 
+Just stand inside and jump. = 
+Rope from Ropebox = 
+A rope that has been created from a ropebox. = 
+Ropebox = 
+A ropebox that will create ropes under itself. = 
+Place it somewhere and you will get a nice long rope. = 
+
+### items.lua ###
+Small Steel Gear = 
+Small Gold Gear = 
+Small Diamond Gear = 
+
+### injector.lua ###
+Self-Contained Injector =
+Stackwise = 
+Itemwise = 
+A machine that injects items put into it into a tube. = 
+Right-click the injector to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = 
