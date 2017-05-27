@@ -10,7 +10,7 @@ minetest.register_node("usefull_contraptions:vacuum_putter_on", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	is_ground_content = true,
-	drop="usefull_contraptions:putter_off",
+	drop="usefull_contraptions:vacuum_putter_off",
 	mesecons = {effector = {
 		action_off = function(pos, node)
 			minetest.swap_node(pos, {name = "usefull_contraptions:vacuum_putter_off", param2 = node.param2})
