@@ -1,6 +1,6 @@
 local S = contraptions_mod.S
 
-minetest.register_node("usefull_contraptions:putter_on", {
+minetest.register_node("useful_contraptions:putter_on", {
 	description = S("Putter"),
 	_doc_items_longdesc = S("A putter that puts items laying on top into a chest below."),
 	_doc_items_usagehelp = S("Right-click the putter or send a mesecon signal to it, to switch it on or off."),
@@ -10,22 +10,22 @@ minetest.register_node("usefull_contraptions:putter_on", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	is_ground_content = true,
-	drop="usefull_contraptions:putter_off",
+	drop="useful_contraptions:putter_off",
 	node_box = {
 			type = "fixed",
 			fixed = {{-0.5,-0.5,-0.5,0.5,0.0625,0.5},}
 		},
 	mesecons = {effector = {
 		action_off = function(pos, node)
-			minetest.swap_node(pos, {name = "usefull_contraptions:putter_off", param2 = node.param2})
+			minetest.swap_node(pos, {name = "useful_contraptions:putter_off", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function (pos, node)
-		minetest.swap_node(pos, {name = "usefull_contraptions:putter_off", param2 = node.param2})
+		minetest.swap_node(pos, {name = "useful_contraptions:putter_off", param2 = node.param2})
 	end
 })
 
-minetest.register_node("usefull_contraptions:putter_off", {
+minetest.register_node("useful_contraptions:putter_off", {
 	description = S("Putter"),
 	_doc_items_longdesc = S("A putter that puts items laying on top into a chest below."),
 	_doc_items_usagehelp = S("Right-click the putter or send a mesecon signal to it, to switch it on or off."),
@@ -41,16 +41,16 @@ minetest.register_node("usefull_contraptions:putter_off", {
 		},
 	mesecons = {effector = {
 		action_on = function(pos, node)
-			minetest.swap_node(pos, {name = "usefull_contraptions:putter_on", param2 = node.param2})
+			minetest.swap_node(pos, {name = "useful_contraptions:putter_on", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function (pos, node)
-		minetest.swap_node(pos, {name = "usefull_contraptions:putter_on", param2 = node.param2})
+		minetest.swap_node(pos, {name = "useful_contraptions:putter_on", param2 = node.param2})
 	end
 })
 
 minetest.register_abm({
-	nodenames = {"usefull_contraptions:putter_on"},
+	nodenames = {"useful_contraptions:putter_on"},
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
@@ -62,7 +62,7 @@ minetest.register_abm({
 				local b = {x = pos.x, y = pos.y - 1, z = pos.z,}
 				local target = minetest.get_node(b)
 				local stack = ItemStack(obj:get_luaentity().itemstring)
-				if target.name == "default:chest" or target.name == "default:chest_locked" or target.name == "usefull_contraptions:injector" then
+				if target.name == "default:chest" or target.name == "default:chest_locked" or target.name == "useful_contraptions:injector" then
 					local meta = minetest.env:get_meta(b)
 					local inv = meta:get_inventory()
 					if inv:room_for_item("main", stack) then

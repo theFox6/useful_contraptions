@@ -33,7 +33,7 @@ local cottages_formspec_treshing_machine = function(meta)
   return myFormspec
 end
 
-minetest.register_node("usefull_contraptions:threshing_machine", {
+minetest.register_node("useful_contraptions:threshing_machine", {
 	drawtype = "nodebox",
 	description = S("threshing machine"),
 	_doc_items_longdesc = S("A threshing machine that makes straw and wheat seed out of wheat."),
@@ -142,7 +142,7 @@ minetest.register_node("usefull_contraptions:threshing_machine", {
 })
 
 minetest.register_abm({
-	nodenames = {"usefull_contraptions:threshing_machine"},
+	nodenames = {"useful_contraptions:threshing_machine"},
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
@@ -220,7 +220,7 @@ minetest.register_abm({
 
 if minetest.get_modpath("pipeworks") then
   minetest.register_craft({
-    output = "usefull_contraptions:threshing_machine",
+    output = "useful_contraptions:threshing_machine",
     recipe = {
       {"factory:small_steel_gear","default:stick","factory:small_steel_gear"},
       {"default:wood", "cottages:threshing_floor", "default:wood", },
@@ -229,7 +229,7 @@ if minetest.get_modpath("pipeworks") then
   })
 else
   minetest.register_craft({
-    output = "usefull_contraptions:threshing_machine",
+    output = "useful_contraptions:threshing_machine",
     recipe = {
       {"factory:small_steel_gear","default:stick","factory:small_steel_gear"},
       {"default:wood", "cottages:threshing_floor", "default:wood", },

@@ -1,6 +1,6 @@
 local S = contraptions_mod.S
 
-minetest.register_node("usefull_contraptions:vacuum_putter_on", {
+minetest.register_node("useful_contraptions:vacuum_putter_on", {
 	description = S("Vacuuming Putter"),
 	_doc_items_longdesc = S("A vacuuming putter that collects items in its range and puts them into a chest below."),
 	_doc_items_usagehelp = S("Right-click the vacuuming putter or send a mesecon signal to it, to switch it on or off."),
@@ -10,18 +10,18 @@ minetest.register_node("usefull_contraptions:vacuum_putter_on", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	is_ground_content = true,
-	drop="usefull_contraptions:vacuum_putter_off",
+	drop="useful_contraptions:vacuum_putter_off",
 	mesecons = {effector = {
 		action_off = function(pos, node)
-			minetest.swap_node(pos, {name = "usefull_contraptions:vacuum_putter_off", param2 = node.param2})
+			minetest.swap_node(pos, {name = "useful_contraptions:vacuum_putter_off", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function (pos, node)
-		minetest.swap_node(pos, {name = "usefull_contraptions:vacuum_putter_off", param2 = node.param2})
+		minetest.swap_node(pos, {name = "useful_contraptions:vacuum_putter_off", param2 = node.param2})
 	end
 })
 
-minetest.register_node("usefull_contraptions:vacuum_putter_off", {
+minetest.register_node("useful_contraptions:vacuum_putter_off", {
 	description = S("Vacuuming Putter"),
 	_doc_items_longdesc = S("A vacuuming putter that collects items in its range and puts them into a chest below."),
 	_doc_items_usagehelp = S("Right-click the vacuuming putter or send a mesecon signal to it, to switch it on or off."),
@@ -33,16 +33,16 @@ minetest.register_node("usefull_contraptions:vacuum_putter_off", {
 	is_ground_content = true,
 	mesecons = {effector = {
 		action_on = function(pos, node)
-			minetest.swap_node(pos, {name = "usefull_contraptions:vacuum_putter_on", param2 = node.param2})
+			minetest.swap_node(pos, {name = "useful_contraptions:vacuum_putter_on", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function (pos, node)
-		minetest.swap_node(pos, {name = "usefull_contraptions:vacuum_putter_on", param2 = node.param2})
+		minetest.swap_node(pos, {name = "useful_contraptions:vacuum_putter_on", param2 = node.param2})
 	end
 })
 
 minetest.register_abm({
-	nodenames = {"usefull_contraptions:vacuum_putter_on"},
+	nodenames = {"useful_contraptions:vacuum_putter_on"},
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
@@ -66,7 +66,7 @@ minetest.register_abm({
 		end
 		all_objects = contraptions_mod.get_objects_with_square_radius({x = pos.x, y = pos.y + 3, z = pos.z}, 2)
 		for _,obj in ipairs(all_objects) do
-			if not obj:is_player() and obj:get_luaentity() and (obj:get_luaentity().name == "__builtin:item" or obj:get_luaentity().name == "usefull_contraptions:moving_item") then
+			if not obj:is_player() and obj:get_luaentity() and (obj:get_luaentity().name == "__builtin:item" or obj:get_luaentity().name == "useful_contraptions:moving_item") then
 				obj:moveto({x = pos.x, y = pos.y + 0.5, z = pos.z})
 			end
 		end

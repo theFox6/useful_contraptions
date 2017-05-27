@@ -1,5 +1,5 @@
 contraptions_mod={
-modpath=minetest.get_modpath("usefull_contraptions")
+modpath=minetest.get_modpath("useful_contraptions")
 }
 
 --needed functions and craftitems
@@ -43,7 +43,7 @@ end
 
 --ready
 if minetest.setting_getbool("log_mods") then
-  minetest.log("action", "[Mod] usefull_contraptions: loaded")
+  minetest.log("action", "[Mod] useful_contraptions: loaded")
 else
-  print("[Mod] usefull_contraptions: loaded")
+  print("[Mod] useful_contraptions: loaded")
 end

@@ -32,7 +32,7 @@ local formspec_oregen = function(meta)
   return myFormspec
 end
 
-minetest.register_node("usefull_contraptions:ore_generator", {
+minetest.register_node("useful_contraptions:ore_generator", {
 	drawtype = "nodebox",
 	description = "ore generator",
 	_doc_items_longdesc = S("A machine that changes usual stuff into ores./nVery useful if you play something like skyblock."),
@@ -122,7 +122,7 @@ minetest.register_node("usefull_contraptions:ore_generator", {
 })
 
 minetest.register_abm({
-	nodenames = {"usefull_contraptions:ore_generator"},
+	nodenames = {"useful_contraptions:ore_generator"},
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
