@@ -38,8 +38,8 @@ if minetest.get_modpath("pipeworks") then
   end
 end
 
---coming soon: ore generator as help for skyblock
---dofile(contraptions_mod.modpath.."/skyblock.lua")
+--ore generator as help for skyblock
+dofile(contraptions_mod.modpath.."/skyblock.lua")
 
 --ready
 if minetest.setting_getbool("log_mods") then

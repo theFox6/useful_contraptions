@@ -93,9 +93,9 @@ minetest.register_node("useful_contraptions:threshing_machine", {
                 return true;
         end,
 	
-	after_dig_node = function(...)
+	after_dig_node = function(pos)
 		if minetest.get_modpath("pipeworks") then
-			pipeworks.after_dig(arg);
+			pipeworks.after_dig(pos);
 		end
 	end,
 

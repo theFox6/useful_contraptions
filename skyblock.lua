@@ -1,6 +1,70 @@
 -- machine to change some iems into ores
 local S = contraptions_mod.S
 
+-- Exclude coal and diamond from being generated
+local not_an_ore = {"default:stone_with_meme", "default:stone_with_NaN"}
+
+local function is_not_an_ore(ore_name)
+	for _,no_ore in ipairs(not_an_ore) do
+		if ore_name == no_ore then
+			return true
+		end
+	end
+	return false
+end
+
+-- choose ore just as often as they occur in mapgen.
+local function choose_ore()
+	local cool_flowing = "default:stone"
+	for _, ore in pairs(minetest.registered_ores) do
+		if is_not_an_ore(ore.ore) then
+			-- Do noting, keep cycling.
+		elseif ore.wherein == cool_flowing and ore.ore_type == "scatter" then
+			local rarity = math.floor(ore.clust_scarcity / ore.clust_size)
+			if rarity > 1 then
+				if math.random(rarity) == 1 then
+					cool_flowing = ore.ore
+					break
+				end
+			end
+		end
+	end
+	return cool_flowing
+end
+
+local function give_drops(nodename, inv) -- gives apropriate drops when node is dug
+	
+	local table = minetest.registered_items[nodename];
+	local dropname;
+	if table~=nil then --put in chest
+		if table.drop~= nil then -- drop handling 
+			if table.drop.items then
+			--handle drops better, emulation of drop code
+			local max_items = table.drop.max_items or 0;
+				if max_items==0 then -- just drop all the items (taking the rarity into consideration)
+					max_items = #table.drop.items or 0;
+				end
+				local drop = table.drop;
+				local i = 0;
+				for k,v in pairs(drop.items) do
+					if i > max_items then break end; i=i+1;								
+					local rare = v.rarity or 1;
+					if math.random(1, rare)==1 then
+						dropname = v.items[math.random(1,#v.items)]; -- pick item randomly from list
+						inv:add_item("out",dropname);
+						
+					end
+				end
+			else
+				inv:add_item("out",table.drop);
+			end	
+		else
+			inv:add_item("out",nodename);
+		end
+	end
+	
+end
+
 local cottages_can_use = function( meta, player )
 	if( not( player) or not( meta )) then
 		return false;
@@ -124,7 +188,7 @@ minetest.register_node("useful_contraptions:ore_generator", {
 minetest.register_abm({
 	nodenames = {"useful_contraptions:ore_generator"},
 	neighbors = nil,
-	interval = 1,
+	interval = 2,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		if( not( pos ) or not( node )) then
@@ -139,35 +203,24 @@ minetest.register_abm({
 		local stack3 = inv:get_stack( 'main', 3);
 		local stack4 = inv:get_stack( 'main', 4);
 
-		-- on average, process 50 items at each cycle (25..75 are possible)
-		local process_stuff = math.random( 25, 50 );
+		-- on average, process 15 items at each cycle (10..20 are possible)
+		local process_stuff = math.random( 10, 20 );
 		local found_stuff = stack1:get_count() + stack2:get_count() + stack3:get_count() + stack4:get_count();
 		
 		-- do not process more items than present in the input slots
-		if found_stuff >= process_stuff then
-			local ore_got=false
-			for _,ore in ipairs(minetest.registered_ores) do
-				print("randomized ore of type: "..type(ore))
-				print("ore name: "..ore.ore)
-				if math.random(0,10)==10 then
-					local ore_count = math.random( 1, 8 );
-					if inv:room_for_item('out',ore.ore..' '..tostring(ore_count)) then
-						-- the player gets output
-						inv:add_item("out",ore.ore..' '..tostring(ore_count));
-						ore_got=true
-					end
-				end
-			end
-			
-	
-			-- consume the stuff
-			if ore_got then
+		if found_stuff >= process_stuff and math.random(0,1)==1 then
+			local process_ore=choose_ore()
+			if inv:room_for_item('out',process_ore) then
+				-- the player gets output
+				give_drops(process_ore, inv)
+				--inv:add_item("out",process_ore..' '..tostring(ore_count));
 				local i=0
 				for _,stack in ipairs(inv:get_list("main")) do
 					i=i+1
 					if (process_stuff > stack:get_count()) then
 						process_stuff = process_stuff - stack:get_count()
 						stack:clear();
+						inv:set_stack("main", i, stack);
 					else
 						stack:take_item(process_stuff);
 						inv:set_stack("main", i, stack);
@@ -194,34 +247,3 @@ minetest.register_abm({
 		end
 	end,
 })
-
--- ores are stored in minetest.registered_ores
-
--- some oredefs:
-
---[[
-minetest.register_ore({
-	ore_type         = "scatter",
-	ore              = "technic:mineral_uranium",
-	wherein          = "default:stone",
-	clust_scarcity   = 8*8*8,
-	clust_num_ores   = 4,
-	clust_size       = 3,
-	y_min       = -300,
-	y_max       = -80,
-	noise_params     = uranium_params,
-	noise_threshold = uranium_threshold,
-})
-minetest.register_ore({
-	ore_type       = "sheet",
-	ore            = "technic:marble",
-	wherein        = "default:stone",
-	clust_scarcity = 1,
-	clust_num_ores = 1,
-	clust_size     = 3,
-	y_min     = -31000,
-	y_max     = -50,
-	noise_threshold = 0.4,
-	noise_params = {offset=0, scale=15, spread={x=150, y=150, z=150}, seed=23, octaves=3, persist=0.70}
-})
---]]
