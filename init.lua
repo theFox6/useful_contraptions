@@ -42,7 +42,7 @@ end
 dofile(contraptions_mod.modpath.."/skyblock.lua")
 
 --ready
-if minetest.setting_getbool("log_mods") then
+if minetest.settings:get_bool("log_mods") then
   minetest.log("action", "[Mod] useful_contraptions: loaded")
 else
   print("[Mod] useful_contraptions: loaded")
