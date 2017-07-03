@@ -41,6 +41,10 @@ end
 --ore generator as help for skyblock
 dofile(contraptions_mod.modpath.."/skyblock.lua")
 
+if minetest.setting_getbool("uselful_contraptions_torch_light") ~= false then
+	dofile(contraptions_mod.modpath.."/torch_light.lua")
+end
+
 --ready
 if minetest.settings:get_bool("log_mods") then
   minetest.log("action", "[Mod] useful_contraptions: loaded")
