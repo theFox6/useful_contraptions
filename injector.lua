@@ -38,14 +38,16 @@ local function inject_items (pos)
 		
 end
 
-minetest.register_craft({
-	output = 'technic:injector 1',
-	recipe = {
-		{'', 'mesecons_blinkyplant:blinky_plant',''},
-		{'', 'default:chest',''},
-		{'', 'pipeworks:tube_1',''},
-	}
-})
+if minetest.get_modpath("mesecons") then
+	minetest.register_craft({
+		output = 'technic:injector 1',
+		recipe = {
+			{'', 'mesecons_blinkyplant:blinky_plant',''},
+			{'', 'default:chest',''},
+			{'', 'pipeworks:tube_1',''},
+		}
+	})
+end
 
 local function set_injector_formspec(meta)
 	local is_stack = meta:get_string("mode") == "whole stacks"
