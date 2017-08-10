@@ -45,6 +45,12 @@ if minetest.setting_getbool("uselful_contraptions_torch_light") ~= false then
 	dofile(contraptions_mod.modpath.."/torch_light.lua")
 end
 
+if minetest.get_modpath("mesecons") then
+  if not minetest.get_modpath("windos") then
+     dofile(contraptions_mod.modpath.."/alarm_block.lua")
+  end
+end
+
 --ready
 if minetest.settings:get_bool("log_mods") then
   minetest.log("action", "[Mod] useful_contraptions: loaded")

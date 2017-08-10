@@ -24,9 +24,9 @@ local cottages_formspec_treshing_machine = function(meta)
                      "label[0,0;"..S("Threshing machine").."]"..
                      "list[current_player;main;0,4;8,4;]";
   if minetest.get_modpath("pipeworks") then
-    myFormspec = myFormspec..fs_helpers.cycling_button(meta, "button[1,2;3,3", S("injectMode"),
-      {"tube injection - off",
-       "tube injection - on "})
+    myFormspec = myFormspec..fs_helpers.cycling_button(meta, "button[1,2;3,3", "injectMode",
+      {S("tube injection - off"),
+       S("tube injection - on ")})
   else
     meta:set_int("injectMode", 0)
   end
