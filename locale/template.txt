@@ -54,7 +54,6 @@ Right-click the vacuum or send a mesecon signal to it, to switch it on or off. =
 threshing machine = 
 Threshing machine = 
 Threshing machine (owned by %s) = 
-injectMode = 
 tube injection - off = 
 tube injection - on  = 
 A threshing machine that makes straw and wheat seed out of wheat. = 

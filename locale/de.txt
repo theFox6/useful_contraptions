@@ -54,7 +54,6 @@ Right-click the vacuum or send a mesecon signal to it, to switch it on or off. =
 threshing machine = drescher
 Threshing machine = drescher
 Threshing machine (owned by %s) = drescher (geheoert %s)
-injectMode = eingabeModus
 tube injection - off = Rohrpost Eingabe - aus
 tube injection - on  = Rohrpost Eingabe - an 
 A threshing machine that makes straw and wheat seed out of wheat. = Ein Drescher, der Stroh und Weizenkoerner aus Weizen macht.
