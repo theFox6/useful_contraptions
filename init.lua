@@ -2,13 +2,15 @@ contraptions_mod={
 modpath=minetest.get_modpath("useful_contraptions")
 }
 
+--TODO: homedecor well
+
 --needed functions and craftitems
 dofile(contraptions_mod.modpath.."/util.lua")
 dofile(contraptions_mod.modpath.."/items.lua")
 
 --ropes out of the castles mod
 if not minetest.get_modpath("castle") then
-  dofile(contraptions_mod.modpath.."/rope.lua")
+  dofile(contraptions_mod.modpath.."/contraptions/rope.lua")
 end
 
 --straw out of the cottages mod
@@ -21,12 +23,12 @@ dofile(contraptions_mod.modpath.."/thresher.lua")
 
 --stuff out of factory mod
 if not minetest.get_modpath("factory") then
-  dofile(contraptions_mod.modpath.."/storage_tank.lua")
+  dofile(contraptions_mod.modpath.."/contraptions/storage_tank.lua")
   dofile(contraptions_mod.modpath.."/vacuum.lua")
 end
 
 --putter to put items into a chest
-dofile(contraptions_mod.modpath.."/putter.lua")
+dofile(contraptions_mod.modpath.."/contraptions/putter.lua")
 
 --putter that collects items in his radius
 dofile(contraptions_mod.modpath.."/vacuum_putter.lua")
@@ -34,12 +36,12 @@ dofile(contraptions_mod.modpath.."/vacuum_putter.lua")
 --injectors out of technic mod
 if minetest.get_modpath("pipeworks") then
   if not minetest.get_modpath("technic") then
-    dofile(contraptions_mod.modpath.."/injector.lua")
+    dofile(contraptions_mod.modpath.."/contraptions/injector.lua")
   end
 end
 
 --ore generator as help for skyblock
-dofile(contraptions_mod.modpath.."/skyblock.lua")
+dofile(contraptions_mod.modpath.."/contraptions/skyblock.lua")
 
 if minetest.setting_getbool("uselful_contraptions_torch_light") ~= false then
 	dofile(contraptions_mod.modpath.."/torch_light.lua")
@@ -47,7 +49,7 @@ end
 
 if minetest.get_modpath("mesecons") then
   if not minetest.get_modpath("windos") then
-     dofile(contraptions_mod.modpath.."/alarm_block.lua")
+     dofile(contraptions_mod.modpath.."/contraptions/alarm_block.lua")
   end
 end
 

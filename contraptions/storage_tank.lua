@@ -30,6 +30,7 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 		drawtype = "glasslike_framed",
 		tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png","factory_glass.png^factory_port.png", "factory_steel_noise.png"},
 		special_tiles = tiles,
+		--FIXME: special tiles are not shown
 		paramtype = "light",
 		sunlight_propagates = true,
 		light_source = light,
