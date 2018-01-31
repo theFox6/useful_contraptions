@@ -1,6 +1,6 @@
 -- Boilerplate to support localized strings if intllib mod is installed.
 if minetest.get_modpath( "intllib" ) and intllib then
-	contraptions_mod.S = intllib.Getter()
+	contraptions_mod.S = intllib.Getter(minetest.get_current_modname())
 else
 	contraptions_mod.S = function(s) return s end
 end
