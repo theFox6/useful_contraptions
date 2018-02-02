@@ -75,6 +75,9 @@ Ropebox = Seilrolle
 A ropebox that will create ropes under itself. = Eine Seilrolle, welche ein Seil herunterlässt.
 Place it somewhere and you will get a nice long rope. = Plaziere sie und du wirst ein schoen langes Seil erhalten.
 
+### well.lua ###
+Water well = Brunnen
+
 ### items.lua ###
 Small Steel Gear = Kleines Stahl Zahnrad
 Small Gold Gear = Kleines Gold Zahnnrad
