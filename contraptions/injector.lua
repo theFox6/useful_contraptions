@@ -1,40 +1,40 @@
 local S = contraptions_mod.S
 
 local function inject_items (pos)
-		local meta=minetest.get_meta(pos) 
-		local inv = meta:get_inventory()
-		local mode=meta:get_string("mode")
-		if mode=="single items" then
-			local i=0
-			for _,stack in ipairs(inv:get_list("main")) do
-			i=i+1
-				if stack then
-				local item0=stack:to_table()
-				if item0 then 
-					item0["count"] = "1"
-					contraptions_mod.tube_inject_item(pos, pos, vector.new(0, -1, 0), item0)
-					stack:take_item(1)
-					inv:set_stack("main", i, stack)
-					return
-					end
+	local meta=minetest.get_meta(pos) 
+	local inv = meta:get_inventory()
+	local mode=meta:get_string("mode")
+	if mode=="single items" then
+	local i=0
+		for _,stack in ipairs(inv:get_list("main")) do
+		i=i+1
+			if stack then
+			local item0=stack:to_table()
+			if item0 then 
+				item0["count"] = "1"
+				contraptions_mod.tube_inject_item(pos, pos, vector.new(0, -1, 0), item0)
+				stack:take_item(1)
+				inv:set_stack("main", i, stack)
+				return
 				end
 			end
 		end
-		if mode=="whole stacks" then
-			local i=0
-			for _,stack in ipairs(inv:get_list("main")) do
-			i=i+1
-				if stack then
-				local item0=stack:to_table()
-				if item0 then 
-					contraptions_mod.tube_inject_item(pos, pos, vector.new(0, -1, 0), item0)
-					stack:clear()
-					inv:set_stack("main", i, stack)
-					return
-					end
+	end
+	if mode=="whole stacks" then
+		local i=0
+		for _,stack in ipairs(inv:get_list("main")) do
+		i=i+1
+			if stack then
+			local item0=stack:to_table()
+			if item0 then 
+				contraptions_mod.tube_inject_item(pos, pos, vector.new(0, -1, 0), item0)
+				stack:clear()
+				inv:set_stack("main", i, stack)
+				return
 				end
 			end
 		end
+	end
 		
 end
 

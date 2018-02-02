@@ -27,8 +27,8 @@ function string.startswith(str, substr)
 	return str:sub(1, substr:len()) == substr
 end
 
-fs_helpers = fs_helpers or {}
-function fs_helpers.on_receive_fields(pos, fields)
+contraptions_mod.fs_helpers = {}
+function contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
 	local meta = minetest.get_meta(pos)
 	for field, value in pairs(fields) do
 		if field:startswith("fs_helpers_cycling:") then
@@ -40,7 +40,7 @@ function fs_helpers.on_receive_fields(pos, fields)
 	end
 end
 
-function fs_helpers.cycling_button(meta, base, meta_name, values)
+function contraptions_mod.fs_helpers.cycling_button(meta, base, meta_name, values)
 	local current_value = meta:get_int(meta_name)
 	local new_value = (current_value + 1) % (#values)
 	local val = values[current_value + 1]

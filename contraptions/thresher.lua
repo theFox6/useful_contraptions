@@ -24,7 +24,7 @@ local cottages_formspec_treshing_machine = function(meta)
                      "label[0,0;"..S("Threshing machine").."]"..
                      "list[current_player;main;0,4;8,4;]";
   if minetest.get_modpath("pipeworks") then
-    myFormspec = myFormspec..fs_helpers.cycling_button(meta, "button[1,2;3,3", "injectMode",
+    myFormspec = myFormspec..contraptions_mod.fs_helpers.cycling_button(meta, "button[1,2;3,3", "injectMode",
       {S("tube injection - off"),
        S("tube injection - on ")})
   else
@@ -133,7 +133,7 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 	on_receive_fields = function(pos, formname, fields, sender)
 		local meta = minetest.get_meta(pos)
 		if cottages_can_use( meta, sender ) then
-			fs_helpers.on_receive_fields(pos, fields)
+			contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
 		end
 		meta:set_string("formspec",
 		cottages_formspec_treshing_machine(meta)..
