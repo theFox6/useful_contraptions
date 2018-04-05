@@ -1,5 +1,8 @@
 # Translation by <your name>
 
+### init.lua ###
+: loaded in %.4f s = 
+
 ### nodes_straw.lua ###
 layer of straw = 
 straw bale = 

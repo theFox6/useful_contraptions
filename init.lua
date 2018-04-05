@@ -1,5 +1,12 @@
+local init = os.clock()
+if minetest.settings:get_bool("log_mods") then
+  minetest.log("action", "[MOD] "..minetest.get_current_modname()..": loading")
+else
+  print("[MOD] "..minetest.get_current_modname()..": loading")
+end
+
 contraptions_mod={
-modpath=minetest.get_modpath("useful_contraptions")
+	modpath=minetest.get_modpath("useful_contraptions")
 }
 
 --needed functions and craftitems
@@ -56,8 +63,9 @@ if not minetest.get_modpath("homedecor") then
 end
 
 --ready
+local time_to_load= os.clock() - init
 if minetest.settings:get_bool("log_mods") then
-  minetest.log("action", "[Mod] useful_contraptions: loaded")
+  minetest.log("action", string.format("[MOD] "..minetest.get_current_modname()..contraptions_mod.S(": loaded in %.4f s"), time_to_load))
 else
-  print("[Mod] useful_contraptions: loaded")
+  print(string.format("[MOD] "..minetest.get_current_modname()..contraptions_mod.S(": loaded in %.4f s"), time_to_load))
 end
