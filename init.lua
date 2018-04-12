@@ -6,7 +6,8 @@ else
 end
 
 contraptions_mod={
-	modpath=minetest.get_modpath("useful_contraptions")
+	modpath=minetest.get_modpath("useful_contraptions"),
+	putter_targets={"default:chest","default:chest_locked","useful_contraptions:injector"}
 }
 
 --needed functions and craftitems
