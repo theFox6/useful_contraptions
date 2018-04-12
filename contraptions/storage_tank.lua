@@ -3,12 +3,13 @@ local S = contraptions_mod.S
 minetest.register_node(":factory:storage_tank", {
 	description = S("Storage Tank"),
 	drawtype = "glasslike_framed",
-	tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png","factory_glass.png^factory_port.png", "factory_steel_noise.png"},
+	tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png",
+		"factory_glass.png^factory_port.png", "factory_steel_noise.png"},
 	inventory_image = "factory_storage_tank.png",
 	paramtype = "light",
 	sunlight_propagates = true,
 	groups = {oddly_breakable_by_hand = 2},
-	on_rightclick = function(pos, node, player, itemstack, pointed_thing)
+	on_rightclick = function(pos, _, _, itemstack)
 		local stack = ItemStack(itemstack)
 		if stack:get_name() == "bucket:bucket_water" then
 			minetest.swap_node(pos, {name = "factory:storage_tank_water", param2 = 3 + 64 + 128})
@@ -29,14 +30,13 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 	minetest.register_node(":factory:storage_tank_" .. name, {	
 		drawtype = "glasslike_framed",
 		tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png","factory_glass.png^factory_port.png", "factory_steel_noise.png"},
-		special_tiles = tiles,
-		--FIXME: special tiles are not shown
+		special_tiles = tiles, --FIXME: special tiles are not shown
 		paramtype = "light",
 		sunlight_propagates = true,
 		light_source = light,
 		groups = {oddly_breakable_by_hand = 2, not_in_creative_inventory = 1},
 		drop = nil,
-		on_dig = function(pos, node, digger)
+		on_dig = function(pos, _, digger)
 			local inv = digger:get_inventory()
 			local meta = minetest.get_meta(pos)
 			local stored = meta:get_int("stored")
@@ -48,7 +48,7 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 			end
 			minetest.set_node(pos, {name = "air"})
 		end,
-		on_rightclick = function(pos, node, player, itemstack, pointed_thing)
+		on_rightclick = function(pos, _, _, itemstack)
 			local stack = ItemStack(itemstack)
 			if stack:get_name() == bucket_full then
 				local meta = minetest.get_meta(pos)
@@ -84,7 +84,7 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 		neighbors = nil,
 		interval = 1,
 		chance = 1,
-		action = function(pos, node, active_object_count, active_object_count_wider)
+		action = function(pos)
 			local meta = minetest.get_meta(pos)
 			local stored = meta:get_int("stored")
 			minetest.swap_node(pos, {name = "factory:storage_tank_" .. name, param2 = stored + 64 + 128})
@@ -97,7 +97,7 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 		wield_image = "factory_storage_tank.png",
 		groups = {not_in_creative_inventory = 1},
 		stack_max = 1,
-		on_place = function(itemstack, placer, pointed_thing)
+		on_place = function(itemstack, _, pointed_thing)
 			local pt = pointed_thing
 			if not pt then
 				return
