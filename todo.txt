@@ -1,0 +1,298 @@
+Checking contraptions/alarm_block.lua             7 warnings
+    contraptions/alarm_block.lua:1:1: unused global variable 'windos'
+    contraptions/alarm_block.lua:22:13: accessing undefined variable 'default'
+    contraptions/alarm_block.lua:27:17: accessing undefined variable 'mesecon'
+    contraptions/alarm_block.lua:28:37: unused argument 'node'
+    contraptions/alarm_block.lua:41:13: accessing undefined variable 'default'
+    contraptions/alarm_block.lua:46:17: accessing undefined variable 'mesecon'
+    contraptions/alarm_block.lua:47:36: unused argument 'node'
+Checking contraptions/injector.lua                20 warnings
+    contraptions/injector.lua:4:35: line contains trailing whitespace
+    contraptions/injector.lua:13:17: line contains trailing whitespace
+    contraptions/injector.lua:29:17: line contains trailing whitespace
+    contraptions/injector.lua:38:1: line contains only whitespace
+    contraptions/injector.lua:69:121: line is too long (172 > 120)
+    contraptions/injector.lua:69:172: line contains trailing whitespace
+    contraptions/injector.lua:74:30: unused argument 'node'
+    contraptions/injector.lua:74:43: unused argument 'direction'
+    contraptions/injector.lua:77:33: unused argument 'node'
+    contraptions/injector.lua:77:46: unused argument 'direction'
+    contraptions/injector.lua:82:11: accessing undefined variable 'default'
+    contraptions/injector.lua:91:25: unused argument 'player'
+    contraptions/injector.lua:96:36: unused argument 'formanme'
+    contraptions/injector.lua:96:54: unused argument 'sender'
+    contraptions/injector.lua:102:21: accessing undefined variable 'pipeworks'
+    contraptions/injector.lua:103:19: accessing undefined variable 'pipeworks'
+    contraptions/injector.lua:110:25: unused argument 'node'
+    contraptions/injector.lua:110:31: unused argument 'active_object_count'
+    contraptions/injector.lua:110:52: unused argument 'active_object_count_wider'
+    contraptions/injector.lua:112:40: line contains trailing whitespace
+Checking contraptions/putter.lua                  8 warnings
+    contraptions/putter.lua:57:25: unused argument 'node'
+    contraptions/putter.lua:57:31: unused argument 'active_object_count'
+    contraptions/putter.lua:57:52: unused argument 'active_object_count_wider'
+    contraptions/putter.lua:59:9: unused variable '_'
+    contraptions/putter.lua:59:11: unused variable 'obj'
+    contraptions/putter.lua:60:9: shadowing definition of variable 'obj' on line 59
+    contraptions/putter.lua:64:19: accessing undefined variable 'ItemStack'
+    contraptions/putter.lua:65:121: line is too long (132 > 120)
+Checking contraptions/rope.lua                    8 warnings
+    contraptions/rope.lua:11:11: accessing undefined variable 'default'
+    contraptions/rope.lua:18:44: line contains trailing whitespace
+    contraptions/rope.lua:53:44: line contains trailing whitespace
+    contraptions/rope.lua:62:32: unused argument 'oldnode'
+    contraptions/rope.lua:85:11: accessing undefined variable 'default'
+    contraptions/rope.lua:97:32: unused argument 'oldnode'
+    contraptions/rope.lua:109:25: unused argument 'node'
+    contraptions/rope.lua:119:25: unused argument 'node'
+Checking contraptions/skyblock.lua                41 warnings
+    contraptions/skyblock.lua:20:29: empty if branch
+    contraptions/skyblock.lua:36:1: line contains only whitespace
+    contraptions/skyblock.lua:40:44: trailing whitespace in a comment
+    contraptions/skyblock.lua:49:9: unused loop variable 'k'
+    contraptions/skyblock.lua:50:45: line contains trailing whitespace
+    contraptions/skyblock.lua:55:1: line contains only whitespace
+    contraptions/skyblock.lua:60:7: line contains trailing whitespace
+    contraptions/skyblock.lua:65:1: line contains only whitespace
+    contraptions/skyblock.lua:102:121: line is too long (124 > 120)
+    contraptions/skyblock.lua:103:121: line is too long (212 > 120)
+    contraptions/skyblock.lua:109:11: accessing undefined variable 'default'
+    contraptions/skyblock.lua:111:30: unused argument 'node'
+    contraptions/skyblock.lua:111:43: unused argument 'direction'
+    contraptions/skyblock.lua:114:33: unused argument 'node'
+    contraptions/skyblock.lua:114:46: unused argument 'direction'
+    contraptions/skyblock.lua:120:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:121:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:122:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:123:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:124:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:126:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:133:6: accessing undefined variable 'pipeworks'
+    contraptions/skyblock.lua:134:4: accessing undefined variable 'pipeworks'
+    contraptions/skyblock.lua:143:121: line is too long (123 > 120)
+    contraptions/skyblock.lua:148:1: line contains only whitespace
+    contraptions/skyblock.lua:151:4: accessing undefined variable 'pipeworks'
+    contraptions/skyblock.lua:155:48: unused argument 'from_list'
+    contraptions/skyblock.lua:155:59: unused argument 'from_index'
+    contraptions/skyblock.lua:155:71: unused argument 'to_list'
+    contraptions/skyblock.lua:155:80: unused argument 'to_index'
+    contraptions/skyblock.lua:163:47: unused argument 'listname'
+    contraptions/skyblock.lua:163:57: unused argument 'index'
+    contraptions/skyblock.lua:171:48: unused argument 'listname'
+    contraptions/skyblock.lua:171:58: unused argument 'index'
+    contraptions/skyblock.lua:179:36: unused argument 'formname'
+    contraptions/skyblock.lua:193:31: unused argument 'active_object_count'
+    contraptions/skyblock.lua:193:52: unused argument 'active_object_count_wider'
+    contraptions/skyblock.lua:197:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:198:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/skyblock.lua:199:9: unused variable 'input'
+    contraptions/skyblock.lua:209:1: line contains only whitespace
+Checking contraptions/storage_tank.lua            28 warnings
+    contraptions/storage_tank.lua:6:121: line is too long (141 > 120)
+    contraptions/storage_tank.lua:11:32: unused argument 'node'
+    contraptions/storage_tank.lua:11:38: unused argument 'player'
+    contraptions/storage_tank.lua:11:57: unused argument 'pointed_thing'
+    contraptions/storage_tank.lua:12:17: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:17:11: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:23:11: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:29:60: line contains trailing whitespace
+    contraptions/storage_tank.lua:31:121: line is too long (142 > 120)
+    contraptions/storage_tank.lua:39:26: unused argument 'node'
+    contraptions/storage_tank.lua:43:18: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:51:33: unused argument 'node'
+    contraptions/storage_tank.lua:51:39: unused argument 'player'
+    contraptions/storage_tank.lua:51:58: unused argument 'pointed_thing'
+    contraptions/storage_tank.lua:52:18: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:59:121: line is too long (123 > 120)
+    contraptions/storage_tank.lua:61:13: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:70:121: line is too long (123 > 120)
+    contraptions/storage_tank.lua:72:13: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:76:13: accessing undefined variable 'ItemStack'
+    contraptions/storage_tank.lua:87:26: unused argument 'node'
+    contraptions/storage_tank.lua:87:32: unused argument 'active_object_count'
+    contraptions/storage_tank.lua:87:53: unused argument 'active_object_count_wider'
+    contraptions/storage_tank.lua:100:34: unused argument 'placer'
+    contraptions/storage_tank.lua:123:121: line is too long (128 > 120)
+    contraptions/storage_tank.lua:126:121: line is too long (149 > 120)
+    contraptions/storage_tank.lua:135:121: line is too long (240 > 120)
+    contraptions/storage_tank.lua:136:121: line is too long (237 > 120)
+Checking contraptions/thresher.lua                32 warnings
+    contraptions/thresher.lua:40:121: line is too long (230 > 120)
+    contraptions/thresher.lua:46:11: accessing undefined variable 'default'
+    contraptions/thresher.lua:48:30: unused argument 'node'
+    contraptions/thresher.lua:48:43: unused argument 'direction'
+    contraptions/thresher.lua:51:33: unused argument 'node'
+    contraptions/thresher.lua:51:46: unused argument 'direction'
+    contraptions/thresher.lua:57:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:58:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:59:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:60:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:61:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:62:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:64:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:74:6: accessing undefined variable 'pipeworks'
+    contraptions/thresher.lua:75:4: accessing undefined variable 'pipeworks'
+    contraptions/thresher.lua:95:1: line contains only whitespace
+    contraptions/thresher.lua:98:4: accessing undefined variable 'pipeworks'
+    contraptions/thresher.lua:102:48: unused argument 'from_list'
+    contraptions/thresher.lua:102:59: unused argument 'from_index'
+    contraptions/thresher.lua:102:71: unused argument 'to_list'
+    contraptions/thresher.lua:102:80: unused argument 'to_index'
+    contraptions/thresher.lua:110:57: unused argument 'index'
+    contraptions/thresher.lua:114:27: line contains trailing whitespace
+    contraptions/thresher.lua:125:48: unused argument 'listname'
+    contraptions/thresher.lua:125:58: unused argument 'index'
+    contraptions/thresher.lua:133:36: unused argument 'formname'
+    contraptions/thresher.lua:149:31: unused argument 'active_object_count'
+    contraptions/thresher.lua:149:52: unused argument 'active_object_count_wider'
+    contraptions/thresher.lua:153:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:154:1: inconsistent indentation (SPACE followed by TAB)
+    contraptions/thresher.lua:155:9: unused variable 'input'
+    contraptions/thresher.lua:168:1: line contains only whitespace
+Checking contraptions/vacuum.lua                  31 warnings
+    contraptions/vacuum.lua:7:121: line is too long (169 > 120)
+    contraptions/vacuum.lua:20:49: line contains trailing whitespace
+    contraptions/vacuum.lua:22:49: line contains trailing whitespace
+    contraptions/vacuum.lua:23:50: line contains trailing whitespace
+    contraptions/vacuum.lua:24:52: line contains trailing whitespace
+    contraptions/vacuum.lua:28:44: line contains trailing whitespace
+    contraptions/vacuum.lua:29:50: line contains trailing whitespace
+    contraptions/vacuum.lua:30:48: line contains trailing whitespace
+    contraptions/vacuum.lua:32:46: line contains trailing whitespace
+    contraptions/vacuum.lua:53:38: unused argument 'player'
+    contraptions/vacuum.lua:53:46: unused argument 'itemstack'
+    contraptions/vacuum.lua:53:57: unused argument 'pointed_thing'
+    contraptions/vacuum.lua:62:121: line is too long (167 > 120)
+    contraptions/vacuum.lua:74:49: line contains trailing whitespace
+    contraptions/vacuum.lua:76:49: line contains trailing whitespace
+    contraptions/vacuum.lua:77:50: line contains trailing whitespace
+    contraptions/vacuum.lua:78:52: line contains trailing whitespace
+    contraptions/vacuum.lua:82:44: line contains trailing whitespace
+    contraptions/vacuum.lua:83:50: line contains trailing whitespace
+    contraptions/vacuum.lua:84:48: line contains trailing whitespace
+    contraptions/vacuum.lua:86:46: line contains trailing whitespace
+    contraptions/vacuum.lua:107:38: unused argument 'player'
+    contraptions/vacuum.lua:107:46: unused argument 'itemstack'
+    contraptions/vacuum.lua:107:57: unused argument 'pointed_thing'
+    contraptions/vacuum.lua:117:25: unused argument 'node'
+    contraptions/vacuum.lua:117:31: unused argument 'active_object_count'
+    contraptions/vacuum.lua:117:52: unused argument 'active_object_count_wider'
+    contraptions/vacuum.lua:119:9: unused variable '_'
+    contraptions/vacuum.lua:119:11: unused variable 'obj'
+    contraptions/vacuum.lua:120:9: shadowing definition of variable 'obj' on line 119
+    contraptions/vacuum.lua:121:121: line is too long (158 > 120)
+Checking contraptions/vacuum_putter.lua           9 warnings
+    contraptions/vacuum_putter.lua:49:25: unused argument 'node'
+    contraptions/vacuum_putter.lua:49:31: unused argument 'active_object_count'
+    contraptions/vacuum_putter.lua:49:52: unused argument 'active_object_count_wider'
+    contraptions/vacuum_putter.lua:51:9: unused variable '_'
+    contraptions/vacuum_putter.lua:51:11: unused variable 'obj'
+    contraptions/vacuum_putter.lua:52:9: shadowing definition of variable 'obj' on line 51
+    contraptions/vacuum_putter.lua:56:19: accessing undefined variable 'ItemStack'
+    contraptions/vacuum_putter.lua:68:9: shadowing definition of variable 'obj' on line 51
+    contraptions/vacuum_putter.lua:69:121: line is too long (170 > 120)
+Checking contraptions/well.lua                    6 warnings
+    contraptions/well.lua:19:11: accessing undefined variable 'default'
+    contraptions/well.lua:20:14: accessing undefined variable 'screwdriver'
+    contraptions/well.lua:43:10: accessing undefined variable 'creative'
+    contraptions/well.lua:48:22: unused argument 'pos'
+    contraptions/well.lua:48:27: unused argument 'node'
+    contraptions/well.lua:48:42: unused argument 'pointed_thing'
+Checking init.lua                                 OK
+Checking items.lua                                OK
+Checking nodes_straw.lua                          73 warnings
+    nodes_straw.lua:56:63: unused argument 'itemstack'
+    nodes_straw.lua:56:74: unused argument 'pointed_thing'
+    nodes_straw.lua:61:20: accessing undefined variable 'default'
+    nodes_straw.lua:72:3: mutating non-standard global variable 'default'
+    nodes_straw.lua:76:3: accessing undefined variable 'default'
+    nodes_straw.lua:81:8: unused variable 'second_node_pos'
+    nodes_straw.lua:94:4: setting non-standard global variable 'node2'
+    nodes_straw.lua:95:8: accessing undefined variable 'node2'
+    nodes_straw.lua:95:49: accessing undefined variable 'node2'
+    nodes_straw.lua:119:1: line contains only whitespace
+    nodes_straw.lua:120:6: accessing undefined variable 'default'
+    nodes_straw.lua:123:4: accessing undefined variable 'default'
+    nodes_straw.lua:129:4: mutating non-standard global variable 'default'
+    nodes_straw.lua:133:4: accessing undefined variable 'default'
+    nodes_straw.lua:142:2: accessing undefined variable 'default'
+    nodes_straw.lua:144:2: mutating non-standard global variable 'default'
+    nodes_straw.lua:147:121: line is too long (124 > 120)
+    nodes_straw.lua:149:121: line is too long (130 > 120)
+    nodes_straw.lua:153:53: trailing whitespace in a comment
+    nodes_straw.lua:166:18: accessing undefined variable 'default'
+    nodes_straw.lua:185:121: line is too long (145 > 120)
+    nodes_straw.lua:192:11: accessing undefined variable 'default'
+    nodes_straw.lua:209:41: line contains trailing whitespace
+    nodes_straw.lua:228:121: line is too long (129 > 120)
+    nodes_straw.lua:252:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:253:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:254:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:255:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:256:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:257:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:259:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:287:48: unused argument 'from_list'
+    nodes_straw.lua:287:59: unused argument 'from_index'
+    nodes_straw.lua:287:71: unused argument 'to_list'
+    nodes_straw.lua:287:80: unused argument 'to_index'
+    nodes_straw.lua:295:57: unused argument 'index'
+    nodes_straw.lua:299:27: line contains trailing whitespace
+    nodes_straw.lua:310:48: unused argument 'listname'
+    nodes_straw.lua:310:58: unused argument 'index'
+    nodes_straw.lua:330:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:332:9: unused variable 'name'
+    nodes_straw.lua:334:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:335:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:337:9: unused variable 'input'
+    nodes_straw.lua:346:121: line is too long (129 > 120)
+    nodes_straw.lua:358:1: line contains only whitespace
+    nodes_straw.lua:382:23: empty if branch
+    nodes_straw.lua:388:6: line contains trailing whitespace
+    nodes_straw.lua:431:12: accessing undefined variable 'anz_seed'
+    nodes_straw.lua:432:4: setting non-standard global variable 'anz_seed'
+    nodes_straw.lua:444:27: accessing undefined variable 'anz_seed'
+    nodes_straw.lua:501:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:502:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:503:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:504:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:505:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:507:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:534:48: unused argument 'from_list'
+    nodes_straw.lua:534:59: unused argument 'from_index'
+    nodes_straw.lua:534:71: unused argument 'to_list'
+    nodes_straw.lua:534:80: unused argument 'to_index'
+    nodes_straw.lua:542:57: unused argument 'index'
+    nodes_straw.lua:556:48: unused argument 'listname'
+    nodes_straw.lua:556:58: unused argument 'index'
+    nodes_straw.lua:565:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:572:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:573:1: inconsistent indentation (SPACE followed by TAB)
+    nodes_straw.lua:575:9: unused variable 'input'
+    nodes_straw.lua:596:1: line contains only whitespace
+    nodes_straw.lua:602:25: accessing undefined variable 'ItemStack'
+    nodes_straw.lua:616:121: line is too long (137 > 120)
+    nodes_straw.lua:629:6: line contains trailing whitespace
+    nodes_straw.lua:647:74: line contains trailing whitespace
+Checking torch_light.lua                          9 warnings
+    torch_light.lua:12:4: line contains trailing whitespace
+    torch_light.lua:29:27: line contains trailing whitespace
+    torch_light.lua:33:10: unused variable 'rounded_pos'
+    torch_light.lua:39:39: unused argument 'dtime'
+    torch_light.lua:40:6: unused loop variable 'i'
+    torch_light.lua:45:121: line is too long (165 > 120)
+    torch_light.lua:71:5: setting non-standard global variable 'is_light'
+    torch_light.lua:72:8: accessing undefined variable 'is_light'
+    torch_light.lua:72:28: accessing undefined variable 'is_light'
+Checking util.lua                                 11 warnings
+    util.lua:2:42: accessing undefined variable 'intllib'
+    util.lua:3:23: accessing undefined variable 'intllib'
+    util.lua:9:4: accessing undefined variable 'pipeworks'
+    util.lua:10:6: accessing undefined variable 'pipeworks'
+    util.lua:11:41: accessing undefined variable 'pipeworks'
+    util.lua:14:23: accessing undefined variable 'ItemStack'
+    util.lua:15:14: accessing undefined variable 'luaentity'
+    util.lua:26:10: setting undefined field 'startswith' of global 'string'
+    util.lua:33:13: unused loop variable 'value'
+    util.lua:59:121: line is too long (144 > 120)
+    util.lua:68:121: line is too long (165 > 120)
