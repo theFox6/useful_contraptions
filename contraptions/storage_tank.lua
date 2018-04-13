@@ -138,6 +138,8 @@ end
 -- I may improve this later
 
 contraptions_mod.register_storage_tank("water", 4, {{name="default_water_source_animated.png",
-	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}}, "default_water.png", 0, "bucket:bucket_water", "bucket:bucket_empty")
+	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}},
+	"default_water.png", 0, "bucket:bucket_water", "bucket:bucket_empty")
 contraptions_mod.register_storage_tank("lava", 8, {{name="default_lava_source_animated.png",
-	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}}, "default_lava.png", 13, "bucket:bucket_lava", "bucket:bucket_empty")
+	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}},
+	"default_lava.png", 13, "bucket:bucket_lava", "bucket:bucket_empty")
