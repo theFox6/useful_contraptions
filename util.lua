@@ -23,7 +23,7 @@ end
 
 --useful formspec helpers
 
-function string.startswith(str, substr)
+local function startswith(str, substr)
 	return str:sub(1, substr:len()) == substr
 end
 
@@ -31,7 +31,7 @@ contraptions_mod.fs_helpers = {}
 function contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
 	local meta = minetest.get_meta(pos)
 	for field, _ in pairs(fields) do
-		if field:startswith("fs_helpers_cycling:") then
+		if startswith(field,"fs_helpers_cycling:") then
 			local l = field:split(":")
 			local new_value = tonumber(l[2])
 			local meta_name = l[3]

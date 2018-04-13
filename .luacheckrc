@@ -4,7 +4,10 @@ read_globals = {
 	"minetest", "core",
 	"dump", "vector",
 	"VoxelManip", "VoxelArea",
-	"default", "ItemStack",
-	"pipeworks", " mesecon", "intllib",
-	"screwdriver", "creative"
+	"default", "ItemStack", "luaentity",
+	"pipeworks", "mesecon", "intllib",
+	"screwdriver", "creative",
+	table = { fields = { "indexof" } }
 }
+
+ignore = {"122"}

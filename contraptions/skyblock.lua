@@ -95,8 +95,10 @@ end
 minetest.register_node("useful_contraptions:ore_generator", {
 	drawtype = "nodebox",
 	description = "ore generator",
-	_doc_items_longdesc = S("A machine that changes usual stuff into ores./nVery useful if you play something like skyblock."),
-	_doc_items_usagehelp = S("Right-click the machine to access the inventory. If you use the pipeworks mod there will be a button too. "..
+	_doc_items_longdesc = S("A machine that changes usual stuff into ores./n"..
+		"Very useful if you play something like skyblock."),
+	_doc_items_usagehelp = S("Right-click the machine to access the inventory. "..
+		"If you use the pipeworks mod there will be a button too. "..
 		"You can use the button to make the generator inject the outputs into a tube."),
 	tiles = {"lifter.png","default_chest_top.png^factory_8x8_black_square_32x32.png",
 	"default_chest_side.png","default_chest_side.png","default_chest_side.png","default_chest_side.png"},
@@ -198,7 +200,7 @@ minetest.register_abm({
 		-- on average, process 15 items at each cycle (10..20 are possible)
 		local process_stuff = math.random( 10, 20 );
 		local found_stuff = stack1:get_count() + stack2:get_count() + stack3:get_count() + stack4:get_count();
-		
+
 		-- do not process more items than present in the input slots
 		if found_stuff >= process_stuff and math.random(0,1)==1 then
 			local process_ore=choose_ore()

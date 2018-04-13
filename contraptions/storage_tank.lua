@@ -27,9 +27,10 @@ minetest.register_node(":factory:storage_tank", {
 })
 
 function contraptions_mod.register_storage_tank(name, increment, tiles, plaintile, light, bucket_full, bucket_empty)
-	minetest.register_node(":factory:storage_tank_" .. name, {	
+	minetest.register_node(":factory:storage_tank_" .. name, {
 		drawtype = "glasslike_framed",
-		tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png","factory_glass.png^factory_port.png", "factory_steel_noise.png"},
+		tiles = {"factory_steel_noise.png","factory_glass.png^factory_measure.png",
+			"factory_glass.png^factory_port.png", "factory_steel_noise.png"},
 		special_tiles = tiles, --FIXME: special tiles are not shown
 		paramtype = "light",
 		sunlight_propagates = true,
@@ -56,7 +57,8 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 				if stored < 63 then
 					stored = stored + increment
 					meta:set_int("stored", stored)
-					meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..math.floor((100/63)*stored).."% "..S("full"))
+					meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..
+						math.floor((100/63)*stored).."% "..S("full"))
 					minetest.swap_node(pos, {name = "factory:storage_tank_" .. name, param2 = stored + 64 + 128})
 					return ItemStack(bucket_empty)
 				end
@@ -67,7 +69,8 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 				if stored > increment then
 					stored = stored - increment
 					meta:set_int("stored", stored)
-					meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..math.floor((100/63)*stored).."% "..S("full"))
+					meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..
+						math.floor((100/63)*stored).."% "..S("full"))
 					minetest.swap_node(pos, {name = "factory:storage_tank_" .. name, param2 = stored + 64 + 128})
 					return ItemStack(bucket_full)
 				elseif stored <= increment then
@@ -120,10 +123,12 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 				return
 			end
 
-			minetest.place_node(pt.above, {name="factory:storage_tank_" .. name, param2 = tonumber(itemstack:get_metadata()) + 64 + 128})
+			minetest.place_node(pt.above, {name="factory:storage_tank_" .. name,
+				param2 = tonumber(itemstack:get_metadata()) + 64 + 128})
 			local meta = minetest.get_meta(pt.above)
 			meta:set_int("stored", tonumber(itemstack:get_metadata()))
-			meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..math.floor((100/63)*tonumber(itemstack:get_metadata())).."% "..S("full"))
+			meta:set_string("infotext", S("Storage Tank").." (" .. S(name) .. "): "..
+				math.floor((100/63)*tonumber(itemstack:get_metadata())).."% "..S("full"))
 			return ""
 		end
 	})
@@ -132,5 +137,9 @@ end
 -- don't forget to add your liquid to the initial node around line 10
 -- I may improve this later
 
-contraptions_mod.register_storage_tank("water", 4, {{name="default_water_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}}, "default_water.png", 0, "bucket:bucket_water", "bucket:bucket_empty")
-contraptions_mod.register_storage_tank("lava", 8, {{name="default_lava_source_animated.png", animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}}, "default_lava.png", 13, "bucket:bucket_lava", "bucket:bucket_empty")
+contraptions_mod.register_storage_tank("water", 4, {{name="default_water_source_animated.png",
+	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=2.0}}},
+	"default_water.png", 0, "bucket:bucket_water", "bucket:bucket_empty")
+contraptions_mod.register_storage_tank("lava", 8, {{name="default_lava_source_animated.png",
+	animation={type="vertical_frames", aspect_w=16, aspect_h=16, length=3.0}}},
+	"default_lava.png", 13, "bucket:bucket_lava", "bucket:bucket_empty")

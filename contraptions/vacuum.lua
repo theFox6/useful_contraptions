@@ -4,8 +4,9 @@ minetest.register_node(":factoy:vacuum_on", {
 	description = S("Vacuum"),
 	_doc_items_longdesc = S("A vacuum that collects items in its range."),
 	_doc_items_usagehelp = S("Right-click the vacuum or send a mesecon signal to it, to switch it on or off."),
-	tiles = {"factory_machine_steel_dark.png^factory_ring_green.png", "factory_machine_steel_dark.png^factory_8x8_black_square_32x32.png",
-		"factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png"},
+	tiles = {"factory_machine_steel_dark.png^factory_ring_green.png",
+		"factory_machine_steel_dark.png^factory_8x8_black_square_32x32.png", "factory_machine_steel_dark.png",
+		"factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png"},
 	groups = {cracky=2, not_in_creative_inventory = 1},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -59,8 +60,9 @@ minetest.register_node(":factoy:vacuum_off", {
 	description = S("Vacuum"),
 	_doc_items_longdesc = S("A vacuum that collects items in its range."),
 	_doc_items_usagehelp = S("Right-click the vacuum or send a mesecon signal to it, to switch it on or off."),
-	tiles = {"factory_machine_steel_dark.png^factory_ring_red.png", "factory_machine_steel_dark.png^factory_8x8_black_square_32x32.png",
-		"factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png"},
+	tiles = {"factory_machine_steel_dark.png^factory_ring_red.png",
+		"factory_machine_steel_dark.png^factory_8x8_black_square_32x32.png", "factory_machine_steel_dark.png",
+		"factory_machine_steel_dark.png", "factory_machine_steel_dark.png", "factory_machine_steel_dark.png"},
 	groups = {cracky=2},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -118,7 +120,8 @@ minetest.register_abm({
 		local all_objects = contraptions_mod.get_objects_with_square_radius({x = pos.x, y = pos.y + 3, z = pos.z}, 2)
 		for _,obj in ipairs(all_objects) do
 			if not obj:is_player() and obj:get_luaentity() and
-			(obj:get_luaentity().name == "__builtin:item" or obj:get_luaentity().name == ":factoy:moving_item") then
+			(obj:get_luaentity().name == "__builtin:item" or
+			obj:get_luaentity().name == ":factoy:moving_item") then
 				obj:moveto({x = pos.x, y = pos.y - 0.5, z = pos.z})
 			end
 		end
