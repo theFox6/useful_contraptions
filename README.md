@@ -1,5 +1,5 @@
 # useful_contraptions
-[![Build Status](https://travis-ci.org/theFox6/useful_contraptions.svg?branch=master)](https://travis-ci.org/mpeterv/luacheck)
+[![Build Status](https://travis-ci.org/theFox6/useful_contraptions.svg?branch=master)](https://travis-ci.org/theFox6/useful_contraptions)
 
 https://forum.minetest.net/viewtopic.php?f=9&t=16666
 
