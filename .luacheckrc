@@ -4,6 +4,7 @@ read_globals = {
 	"minetest", "core",
 	"dump", "vector",
 	"VoxelManip", "VoxelArea",
-        "default", " ItemStack",
-        "pipeworks", " mesecons"
+	"default", "ItemStack",
+	"pipeworks", " mesecons", "intllib"
+	"screwdriver", "creative"
 }
