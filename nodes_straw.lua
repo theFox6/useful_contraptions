@@ -53,7 +53,7 @@ contraptions_mod.allow_sit = function( player )
 	return false;
 end
 
-contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack, pointed_thing )
+contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack )
 	if( not( clicker ) or not( node ) or not( node.name ) or not( pos ) or not( contraptions_mod.allow_sit( clicker))) then
 		return;
 	end
@@ -78,7 +78,6 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack, pointed
 		return;
 	end
 
-	local second_node_pos = {x=pos.x, y=pos.y, z=pos.z};
 	-- the node that will contain the head of the player
 	local p = {x=pos.x, y=pos.y, z=pos.z};
 	-- the player's head is pointing in this direction
@@ -91,7 +90,7 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack, pointed
 		-- search for a second mat right next to this one
 		local offset = {{x=0,z=-1}, {x=-1,z=0}, {x=0,z=1}, {x=1,z=0}};
 		for i,off in ipairs( offset ) do
-			node2 = minetest.get_node( {x=pos.x+off.x, y=pos.y, z=pos.z+off.z} );
+			local node2 = minetest.get_node( {x=pos.x+off.x, y=pos.y, z=pos.z+off.z} );
 			if( node2.name == 'cottages:sleeping_mat' or node2.name=='cottages:straw_mat' ) then
 				-- if a second mat is found, sleeping is possible
 				allow_sleep = true;
@@ -116,7 +115,7 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack, pointed
 			p.x = p.x+0.5;
 		end
 	end
-	
+
 	if( default.player_attached[pname] and animation.animation=="sit") then
 		-- just changing the animation...
 		if( allow_sleep==true ) then
@@ -142,15 +141,17 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker, itemstack, pointed
 	default.player_set_animation(clicker, new_animation, 30)
 	clicker:set_physics_override(0, 0, 0)
 	default.player_attached[pname] = true
-
+	local msg
 	if( allow_sleep==true) then
-		minetest.chat_send_player( pname, S("Aaah! What a comftable "..place_name..". A second right-click will let you sleep."));
+		msg = S("Aaah! What a comftable "..place_name..". A second right-click will let you sleep.")
+		minetest.chat_send_player(pname, msg);
 	else
-		minetest.chat_send_player( pname, S("Comftable, but not good enough for a nap. Right-click again if you want to get back up."));
+		msg = S("Comftable, but not good enough for a nap. Right-click again if you want to get back up.")
+		minetest.chat_send_player(pname, msg);
 	end
 end
 
--- an even simpler from of bed - usually for animals 
+-- an even simpler from of bed - usually for animals
 -- it is a nodebox and not wallmounted because that makes it easier to replace beds with straw mats
 minetest.register_node(":cottages:straw_mat", {
         description = S("layer of straw"),
@@ -182,7 +183,7 @@ minetest.register_node(":cottages:straw_mat", {
 	end
 })
 
--- straw bales are a must for farming environments; if you for some reason do not have the darkage mod installed, this here gets you a straw bale
+-- straw bales are a must for farming environments
 minetest.register_node(":cottages:straw_bale", {
 	drawtype = "nodebox",
 	description = S("straw bale"),
@@ -206,7 +207,7 @@ minetest.register_node(":cottages:straw_bale", {
 	is_ground_content = false,
 })
 
-local cottages_formspec_treshing_floor = 
+local cottages_formspec_treshing_floor =
                                "size[8,8]"..
 				"image[1.5,0;1,1;".."default_stick.png".."]"..
 				"image[0,1;1,1;farming_wheat.png]"..
@@ -249,14 +250,14 @@ minetest.register_node(":cottages:threshing_floor", {
 			}
 	},
 	on_construct = function(pos)
-               	local meta = minetest.get_meta(pos);
-               	meta:set_string("infotext", S("Threshing floor"));
-               	local inv = meta:get_inventory();
-               	inv:set_size("harvest", 2);
-               	inv:set_size("straw", 4);
-               	inv:set_size("seeds", 4);
-                meta:set_string("formspec", cottages_formspec_treshing_floor );
-       	end,
+		local meta = minetest.get_meta(pos);
+		meta:set_string("infotext", S("Threshing floor"));
+		local inv = meta:get_inventory();
+		inv:set_size("harvest", 2);
+		inv:set_size("straw", 4);
+		inv:set_size("seeds", 4);
+		meta:set_string("formspec", cottages_formspec_treshing_floor );
+	end,
 
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos);
@@ -284,7 +285,7 @@ minetest.register_node(":cottages:threshing_floor", {
                 return true;
         end,
 
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+	allow_metadata_inventory_move = function(pos, _, _, _, _, count, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -292,11 +293,11 @@ minetest.register_node(":cottages:threshing_floor", {
 		return count;
 	end,
 
-	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_put = function(pos, listname, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		-- only accept input the threshing floor can use/process
 		if(    listname=='straw'
-		    or listname=='seeds' 
+		    or listname=='seeds'
 		    or (listname=='harvest' and stack and stack:get_name() ~= 'farming:wheat' )) then
 			return 0;
 		end
@@ -307,7 +308,7 @@ minetest.register_node(":cottages:threshing_floor", {
 		return stack:get_count()
 	end,
 
-	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_take = function(pos, _, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -327,14 +328,11 @@ minetest.register_node(":cottages:threshing_floor", {
 		    or not( minetest.registered_items[ wielded:get_name() ])
 		    or not( minetest.registered_items[ wielded:get_name() ].groups )
 		    or not( minetest.registered_items[ wielded:get_name() ].groups.stick )) then
- 			return;
+			return;
 		end
-		local name = puncher:get_player_name();
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory();
 
-               	local meta = minetest.get_meta(pos);
-               	local inv = meta:get_inventory();
-
-		local input = inv:get_list('harvest');
 		-- we have two input slots
 		local stack1 = inv:get_stack( 'harvest', 1);
 		local stack2 = inv:get_stack( 'harvest', 2);
@@ -343,7 +341,6 @@ minetest.register_node(":cottages:threshing_floor", {
 			or( not( stack1:is_empty()) and stack1:get_name() ~= 'farming:wheat')
 			or( not( stack2:is_empty()) and stack2:get_name() ~= 'farming:wheat')) then
 
---			minetest.chat_send_player( name, 'One of the input slots contains something else than wheat, or there is no wheat at all.');
 			-- update the formspec
 			meta:set_string("formspec",
 				cottages_formspec_treshing_floor..
@@ -355,7 +352,7 @@ minetest.register_node(":cottages:threshing_floor", {
 		local anz_wheat = 10 + math.random( 0, 30 );
 		-- we already made sure there is only wheat inside
 		local found_wheat = stack1:get_count() + stack2:get_count();
-		
+
 		-- do not process more wheat than present in the input slots
 		if( found_wheat < anz_wheat ) then
 			anz_wheat = found_wheat;
@@ -379,13 +376,13 @@ minetest.register_node(":cottages:threshing_floor", {
 			inv:remove_item("harvest", 'farming:wheat '..tostring( anz_wheat ));
 
 			local anz_left = found_wheat - anz_wheat;
-			if( anz_left > 0 ) then
---				minetest.chat_send_player( name, S('You have threshed %s wheat (%s are left).'):format(anz_wheat,anz_left));
-			else
+			if( anz_left == 0 ) then
 --				minetest.chat_send_player( name, S('You have threshed the last %s wheat.'):format(anz_wheat));
 				overlay1 = "";
+--[[			else
+				minetest.chat_send_player( name, S('You have threshed %s wheat (%s are left).'):format(anz_wheat,anz_left));--]]
 			end
-		end	
+		end
 
 		local hud0 = puncher:hud_add({
 			hud_elem_type = "image",
@@ -428,8 +425,8 @@ minetest.register_node(":cottages:threshing_floor", {
 		if( not( anz_straw )) then
 			anz_straw = "0";
 		end
-		if( not( anz_seed )) then
-			anz_seed = "0";
+		if( not( anz_seeds )) then
+			anz_seeds = "0";
 		end
 		local hud5 = puncher:hud_add({
 			hud_elem_type = "text",
@@ -441,14 +438,12 @@ minetest.register_node(":cottages:threshing_floor", {
 		});
 		local hud6 = puncher:hud_add({
 			hud_elem_type = "text",
-			text = '+ '..tostring( anz_seed )..S(' seeds'),
+			text = '+ '..tostring( anz_seeds )..S(' seeds'),
 			number = 0x00CC00,
 			alignment = {x = 0, y = 0},
 			scale = {x = 100, y = 100}, -- bounding rectangle of the text
 			position = {x = 0.6, y = 0.65},
 		});
-
-
 
 		minetest.after(3, function()
 			if( puncher ) then
@@ -488,23 +483,23 @@ minetest.register_node(":cottages:handmill", {
 	selection_box = {
 		type = "fixed",
 		fixed = {
-					{-0.50, -0.5,-0.50, 0.50,  0.25, 0.50},
+				{-0.50, -0.5,-0.50, 0.50,  0.25, 0.50},
 			}
 	},
 	collision_box = {
 		type = "fixed",
 		fixed = {
-					{-0.50, -0.5,-0.50, 0.50,  0.25, 0.50},
+				{-0.50, -0.5,-0.50, 0.50,  0.25, 0.50},
 			}
 	},
 	on_construct = function(pos)
-               	local meta = minetest.get_meta(pos);
-               	meta:set_string("infotext", S("Mill, powered by punching"));
-               	local inv = meta:get_inventory();
-               	inv:set_size("seeds", 1);
-               	inv:set_size("flour", 4);
-                meta:set_string("formspec", cottages_handmill_formspec );
-       	end,
+		local meta = minetest.get_meta(pos);
+		meta:set_string("infotext", S("Mill, powered by punching"));
+		local inv = meta:get_inventory();
+		inv:set_size("seeds", 1);
+		inv:set_size("flour", 4);
+		meta:set_string("formspec", cottages_handmill_formspec );
+	end,
 
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos);
@@ -531,7 +526,7 @@ minetest.register_node(":cottages:handmill", {
                 return true;
         end,
 
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+	allow_metadata_inventory_move = function(pos, _, _, _, _, count, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -539,7 +534,7 @@ minetest.register_node(":cottages:handmill", {
 		return count;
 	end,
 
-	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_put = function(pos, listname, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		-- only accept input the threshing floor can use/process
 		if(    listname=='flour'
@@ -553,7 +548,7 @@ minetest.register_node(":cottages:handmill", {
 		return stack:get_count()
 	end,
 
-	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_take = function(pos, _, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -562,7 +557,7 @@ minetest.register_node(":cottages:handmill", {
 	end,
 
         -- this code is very similar to the threshing floor; except that it has only one input- and output-slot
- 	-- and does not require the usage of a stick
+	-- and does not require the usage of a stick
 	on_punch = function(pos, node, puncher)
 		if( not( pos ) or not( node ) or not( puncher )) then
 			return;
@@ -572,12 +567,11 @@ minetest.register_node(":cottages:handmill", {
                	local meta = minetest.get_meta(pos);
                	local inv = meta:get_inventory();
 
-		local input = inv:get_list('seeds');
 		local stack1 = inv:get_stack( 'seeds', 1);
 
 		if(       (      stack1:is_empty())
 			or( not( stack1:is_empty())
-			     and not( contraptions_mod.handmill_product[ stack1:get_name() ] ))) then
+			and not( contraptions_mod.handmill_product[ stack1:get_name() ] ))) then
 
 			if not( stack1:is_empty() ) then
 				minetest.chat_send_player(name,"Nothing happens...")
@@ -593,7 +587,7 @@ minetest.register_node(":cottages:handmill", {
 		local anz = 1 + math.random( contraptions_mod.handmill_min_per_turn, contraptions_mod.handmill_max_per_turn );
 		-- we already made sure there is only wheat inside
 		local found = stack1:get_count();
-		
+
 		-- do not process more wheat than present in the input slots
 		if( found < anz ) then
 			anz = found;
@@ -626,7 +620,7 @@ minetest.register_node(":cottages:handmill", {
 				end
 				minetest.swap_node( pos, node );
 			end
-		end	
+		end
 	end,
 })
 
@@ -644,7 +638,7 @@ minetest.register_craft({
                 {"default:stone",'',''},
 		{"farming:wheat", "farming:wheat", "farming:wheat", },
 	},
-        replacements = {{ "default:stone", "farming:seed_wheat".." 3" }},  
+        replacements = {{ "default:stone", "farming:seed_wheat".." 3" }},
 })
 
 -- this is a better way to get straw mats
