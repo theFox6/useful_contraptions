@@ -5,6 +5,6 @@ read_globals = {
 	"dump", "vector",
 	"VoxelManip", "VoxelArea",
 	"default", "ItemStack",
-	"pipeworks", " mesecons", "intllib",
+	"pipeworks", " mesecon", "intllib",
 	"screwdriver", "creative"
 }

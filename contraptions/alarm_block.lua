@@ -1,6 +1,6 @@
 windos = {}
 
-local windos, sounds = {}, {}
+local sounds = {}
 
 function windos.play_sound(pos)
    local spos = minetest.hash_node_position(pos)
@@ -25,7 +25,7 @@ minetest.register_node(":windos:alarmblock_on", {
    end,
    mesecons = {effector = {
         state = mesecon.state.off,
-        action_off = function (pos, node)
+        action_off = function (pos) --pos, node
             windos.stop_sound(pos)
             minetest.swap_node(pos, {name = "windos:alarmblock_off"})
         end,
@@ -44,7 +44,7 @@ minetest.register_node(":windos:alarmblock_off", {
    end,
    mesecons = {effector = {
         state = mesecon.state.on,
-        action_on = function (pos, node)
+        action_on = function (pos) --pos, node
             minetest.swap_node(pos, {name = "windos:alarmblock_on"})
             windos.play_sound(pos)
         end,

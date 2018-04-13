@@ -9,7 +9,7 @@ function check_for_torch(player)
 			return true
 	end
 	return false
-end   
+end
 
 minetest.register_on_joinplayer(function(player)
 	local player_name = player:get_player_name()
@@ -26,18 +26,16 @@ end)
 minetest.register_on_leaveplayer(function(player)
 	local player_name = player:get_player_name()
 	for i,v in ipairs(contraptions_mod.torch_light.players) do
-		if v == player_name then 
+		if v == player_name then
 			table.remove(contraptions_mod.torch_light.players, i)
 			contraptions_mod.torch_light.torch_wielded[player_name] = nil
-			local pos = player:getpos()
-			local rounded_pos = vector.round(pos)
 			contraptions_mod.torch_light.player_positions[player_name] = nil
-	end
+		end
 	end
 end)
 
 minetest.register_globalstep(function(dtime)
-	for i,player_name in ipairs(contraptions_mod.torch_light.players) do
+	for _,player_name in ipairs(contraptions_mod.torch_light.players) do
 		local player = minetest.get_player_by_name(player_name)
 		if check_for_torch(player) then
 			local pos = player:getpos()
@@ -68,7 +66,7 @@ minetest.register_globalstep(function(dtime)
 			until minetest.get_node_or_nil(rounded_pos) ~= "useful_contraptions:light"
 			local old_pos = vector.new(contraptions_mod.torch_light.player_positions[player_name])
 			repeat
-				is_light  = minetest.get_node_or_nil(old_pos)
+				local is_light  = minetest.get_node_or_nil(old_pos)
 				if is_light ~= nil and is_light.name == "useful_contraptions:light" then
 					minetest.add_node(old_pos,{type="node",name="air"})
 				end

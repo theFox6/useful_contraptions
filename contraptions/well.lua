@@ -45,7 +45,7 @@ minetest.register_node(":homedecor:well", {
 		end
 		return itemstack
 	end,
-	on_punch = function(pos, node, puncher, pointed_thing)
+	on_punch = function(_, _, puncher)
 		local wielded_item = puncher:get_wielded_item()
 		if wielded_item:get_name() == "bucket:bucket_empty" then
 			local inv = puncher:get_inventory()

@@ -37,7 +37,8 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 	drawtype = "nodebox",
 	description = S("threshing machine"),
 	_doc_items_longdesc = S("A threshing machine that makes straw and wheat seed out of wheat."),
-	_doc_items_usagehelp = S("Right-click the threshing machine to access the inventory. If you use the pipeworks mod there will be a button too. You can use the button to make the threshing machine inject the outputs into a tube."),
+	_doc_items_usagehelp = S("Right-click the threshing machine to access the inventory. "..
+		"If you use the pipeworks mod there will be a button too. You can use the button to make the threshing machine inject the outputs into a tube."),
 	tiles = {"default_chest_top.png^default_stick.png","default_chest_top.png^factory_8x8_black_square_32x32.png",
 	"default_chest_side.png","default_chest_side.png","default_chest_side.png","default_chest_side.png^farming_wheat.png"},
 	paramtype  = "light",
@@ -45,23 +46,23 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 	groups = {cracky=2, tubedevice = 1, tubedevice_receiver = 1},
 	sounds = default.node_sound_wood_defaults(),
 	tube = {
-		can_insert = function(pos, node, stack, direction)
+		can_insert = function(pos, _, stack)
 			return ((stack:get_name() == 'farming:wheat') and minetest.get_meta(pos):get_inventory():room_for_item("main",stack))
 		end,
-		insert_object = function(pos, node, stack, direction)
+		insert_object = function(pos, _, stack)
 			return minetest.get_meta(pos):get_inventory():add_item("main",stack)
 		end,
 		connect_sides = {left=1, right=1, front=1, back=1, top=1, bottom=1},
 	},
 	on_construct = function(pos)
-               	local meta = minetest.get_meta(pos);
-               	meta:set_string("infotext", S("Threshing machine"));
-               	local inv = meta:get_inventory();
-               	inv:set_size("main", 2);
-               	inv:set_size("straw", 4);
-               	inv:set_size("seeds", 4);
-                meta:set_string("formspec", cottages_formspec_treshing_machine(meta) );
-       	end,
+		local meta = minetest.get_meta(pos);
+		meta:set_string("infotext", S("Threshing machine"));
+		local inv = meta:get_inventory();
+		inv:set_size("main", 2);
+		inv:set_size("straw", 4);
+		inv:set_size("seeds", 4);
+		meta:set_string("formspec", cottages_formspec_treshing_machine(meta) );
+	end,
 
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos);
@@ -92,14 +93,13 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 		end
                 return true;
         end,
-	
 	after_dig_node = function(pos)
 		if minetest.get_modpath("pipeworks") then
 			pipeworks.after_dig(pos);
 		end
 	end,
 
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+	allow_metadata_inventory_move = function(pos, _, _, _, _, count, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -107,11 +107,11 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 		return count;
 	end,
 
-	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_put = function(pos, listname, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		-- only accept input the threshing floor can use/process
 		if(    listname=='straw'
-		    or listname=='seeds' 
+		    or listname=='seeds'
 		    or (listname=='main' and stack and stack:get_name() ~= 'farming:wheat' )) then
 			return 0;
 		end
@@ -122,7 +122,7 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 		return stack:get_count()
 	end,
 
-	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_take = function(pos, _, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -130,7 +130,7 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 		return stack:get_count()
 	end,
 
-	on_receive_fields = function(pos, formname, fields, sender)
+	on_receive_fields = function(pos, _, fields, sender)
 		local meta = minetest.get_meta(pos)
 		if cottages_can_use( meta, sender ) then
 			contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
@@ -146,13 +146,12 @@ minetest.register_abm({
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
+	action = function(pos, node)
 		if( not( pos ) or not( node )) then
 			return;
 		end
-               	local meta = minetest.get_meta(pos);
-               	local inv = meta:get_inventory();
-		local input = inv:get_list('main');
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory();
 		-- we have two input slots
 		local stack1 = inv:get_stack( 'main', 1);
 		local stack2 = inv:get_stack( 'main', 2);
@@ -165,7 +164,6 @@ minetest.register_abm({
 		local anz_wheat = 1 + math.random( 0, 4 );
 		-- we already made sure there is only wheat inside
 		local found_wheat = stack1:get_count() + stack2:get_count();
-		
 		-- do not process more wheat than present in the input slots
 		if( found_wheat < anz_wheat ) then
 			anz_wheat = found_wheat;

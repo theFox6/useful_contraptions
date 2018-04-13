@@ -15,7 +15,7 @@ minetest.register_node(":castle:ropes",{
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16}, 
+			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16},
 		},
 	},
 	selection_box = {
@@ -50,7 +50,7 @@ minetest.register_node(":castle:box_rope", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16}, 
+			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16},
 		},
 	},
 	selection_box = {
@@ -59,7 +59,7 @@ minetest.register_node(":castle:box_rope", {
 			{-1/16, -8/16, -1/16, 1/16, 8/16, 1/16},
 		},
 	},
-	after_destruct = function(pos,oldnode)
+	after_destruct = function(pos) --pos, oldnode
 		local node = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if node.name == "castle:box_rope" then
 			minetest.remove_node({x=pos.x,y=pos.y-1,z=pos.z})
@@ -94,7 +94,7 @@ minetest.register_node(":castle:ropebox", {
 			{-1/16, -8/16, -1/16, 1/16, -4/16, 1/16},
 		},
 	},
-	after_destruct = function(pos,oldnode)
+	after_destruct = function(pos) --pos,oldnode
 		local node = minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z})
 		if node.name == "castle:box_rope" then
 			minetest.remove_node({x=pos.x,y=pos.y-1,z=pos.z})
@@ -106,7 +106,7 @@ minetest.register_abm({
 	nodenames = {"castle:ropebox"},
 	interval = 1,
 	chance = 1,
-	action = function(pos, node)
+	action = function(pos)
 	if minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name ~= 'air'  then return end
 		minetest.add_node({x=pos.x,y=pos.y-1,z=pos.z}, {name="castle:box_rope"})
 	end
@@ -116,7 +116,7 @@ minetest.register_abm({
 	nodenames = {"castle:box_rope"},
 	interval = 1,
 	chance = 1,
-	action = function(pos, node)
+	action = function(pos)
 	if minetest.get_node({x=pos.x,y=pos.y-1,z=pos.z}).name ~= 'air'  then return end
 		minetest.add_node({x=pos.x,y=pos.y-1,z=pos.z}, {name="castle:box_rope"})
 	end

@@ -17,9 +17,7 @@ end
 local function choose_ore()
 	local cool_flowing = "default:stone"
 	for _, ore in pairs(minetest.registered_ores) do
-		if is_not_an_ore(ore.ore) then
-			-- Do noting, keep cycling.
-		elseif ore.wherein == cool_flowing and ore.ore_type == "scatter" then
+		if (not is_not_an_ore(ore.ore)) and ore.wherein == cool_flowing and ore.ore_type == "scatter" then
 			local rarity = math.floor(ore.clust_scarcity / ore.clust_size)
 			if rarity > 1 then
 				if math.random(rarity) == 1 then
@@ -33,11 +31,10 @@ local function choose_ore()
 end
 
 local function give_drops(nodename, inv) -- gives apropriate drops when node is dug
-	
 	local table = minetest.registered_items[nodename];
 	local dropname;
 	if table~=nil then --put in chest
-		if table.drop~= nil then -- drop handling 
+		if table.drop~= nil then -- drop handling
 			if table.drop.items then
 			--handle drops better, emulation of drop code
 			local max_items = table.drop.max_items or 0;
@@ -46,23 +43,22 @@ local function give_drops(nodename, inv) -- gives apropriate drops when node is 
 				end
 				local drop = table.drop;
 				local i = 0;
-				for k,v in pairs(drop.items) do
-					if i > max_items then break end; i=i+1;								
+				for _,v in pairs(drop.items) do
+					if i > max_items then break end
+					i=i+1
 					local rare = v.rarity or 1;
 					if math.random(1, rare)==1 then
 						dropname = v.items[math.random(1,#v.items)]; -- pick item randomly from list
 						inv:add_item("out",dropname);
-						
 					end
 				end
 			else
 				inv:add_item("out",table.drop);
-			end	
+			end
 		else
 			inv:add_item("out",nodename);
 		end
 	end
-	
 end
 
 local cottages_can_use = function( meta, player )
@@ -100,7 +96,8 @@ minetest.register_node("useful_contraptions:ore_generator", {
 	drawtype = "nodebox",
 	description = "ore generator",
 	_doc_items_longdesc = S("A machine that changes usual stuff into ores./nVery useful if you play something like skyblock."),
-	_doc_items_usagehelp = S("Right-click the machine to access the inventory. If you use the pipeworks mod there will be a button too. You can use the button to make the generator inject the outputs into a tube."),
+	_doc_items_usagehelp = S("Right-click the machine to access the inventory. If you use the pipeworks mod there will be a button too. "..
+		"You can use the button to make the generator inject the outputs into a tube."),
 	tiles = {"lifter.png","default_chest_top.png^factory_8x8_black_square_32x32.png",
 	"default_chest_side.png","default_chest_side.png","default_chest_side.png","default_chest_side.png"},
 	paramtype  = "light",
@@ -108,22 +105,22 @@ minetest.register_node("useful_contraptions:ore_generator", {
 	groups = {cracky=2, tubedevice = 1, tubedevice_receiver = 1},
 	sounds = default.node_sound_wood_defaults(),
 	tube = {
-		can_insert = function(pos, node, stack, direction)
+		can_insert = function(pos, _, stack)
 			return minetest.get_meta(pos):get_inventory():room_for_item("main",stack)
 		end,
-		insert_object = function(pos, node, stack, direction)
+		insert_object = function(pos, _, stack)
 			return minetest.get_meta(pos):get_inventory():add_item("main",stack)
 		end,
 		connect_sides = {left=1, right=1, front=1, back=1, top=1, bottom=1},
 	},
 	on_construct = function(pos)
-               	local meta = minetest.get_meta(pos);
-               	meta:set_string("infotext", S("Threshing machine"));
-               	local inv = meta:get_inventory();
-               	inv:set_size("main", 4);
-               	inv:set_size("out", 4);
-                meta:set_string("formspec", formspec_oregen(meta) );
-       	end,
+		local meta = minetest.get_meta(pos);
+		meta:set_string("infotext", S("Threshing machine"));
+		local inv = meta:get_inventory();
+		inv:set_size("main", 4);
+		inv:set_size("out", 4);
+		meta:set_string("formspec", formspec_oregen(meta) );
+	end,
 
 	after_place_node = function(pos, placer)
 		local meta = minetest.get_meta(pos);
@@ -133,26 +130,21 @@ minetest.register_node("useful_contraptions:ore_generator", {
 		if pipeworks then
 			pipeworks.after_place(pos, placer)
 		end
-        end,
-
-        can_dig = function(pos,player)
-
-                local meta  = minetest.get_meta(pos);
-                local inv   = meta:get_inventory();
-
-                if(  not( inv:is_empty("main")) or not( inv:is_empty("out")) or not(cottages_can_use( meta, player ))) then
-		   return false;
+	end,
+	can_dig = function(pos,player)
+		local meta  = minetest.get_meta(pos);
+		local inv   = meta:get_inventory();
+		if(  not( inv:is_empty("main")) or not( inv:is_empty("out")) or not(cottages_can_use( meta, player ))) then
+			return false;
 		end
-                return true;
-        end,
-	
+		return true;
+	end,
 	after_dig_node = function(pos)
 		if minetest.get_modpath("pipeworks") then
 			pipeworks.after_dig(pos);
 		end
 	end,
-
-	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+	allow_metadata_inventory_move = function(pos, _, _, _, _, count, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -160,7 +152,7 @@ minetest.register_node("useful_contraptions:ore_generator", {
 		return count;
 	end,
 
-	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_put = function(pos, _, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -168,7 +160,7 @@ minetest.register_node("useful_contraptions:ore_generator", {
 		return stack:get_count()
 	end,
 
-	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+	allow_metadata_inventory_take = function(pos, _, _, stack, player)
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -176,7 +168,7 @@ minetest.register_node("useful_contraptions:ore_generator", {
 		return stack:get_count()
 	end,
 
-	on_receive_fields = function(pos, formname, fields, sender)
+	on_receive_fields = function(pos, _, fields, sender)
 		local meta = minetest.get_meta(pos)
 		if cottages_can_use( meta, sender ) then
 			contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
@@ -190,12 +182,12 @@ minetest.register_abm({
 	neighbors = nil,
 	interval = 2,
 	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
+	action = function(pos, node)
 		if( not( pos ) or not( node )) then
 			return;
 		end
-               	local meta = minetest.get_meta(pos);
-               	local inv = meta:get_inventory();
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory();
 		local input = inv:get_list('main');
 		-- we have four input slots
 		local stack1 = inv:get_stack( 'main', 1);
@@ -215,7 +207,7 @@ minetest.register_abm({
 				give_drops(process_ore, inv)
 				--inv:add_item("out",process_ore..' '..tostring(ore_count));
 				local i=0
-				for _,stack in ipairs(inv:get_list("main")) do
+				for _,stack in ipairs(input) do
 					i=i+1
 					if (process_stuff > stack:get_count()) then
 						process_stuff = process_stuff - stack:get_count()

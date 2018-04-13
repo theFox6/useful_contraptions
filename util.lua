@@ -30,7 +30,7 @@ end
 contraptions_mod.fs_helpers = {}
 function contraptions_mod.fs_helpers.on_receive_fields(pos, fields)
 	local meta = minetest.get_meta(pos)
-	for field, value in pairs(fields) do
+	for field, _ in pairs(fields) do
 		if field:startswith("fs_helpers_cycling:") then
 			local l = field:split(":")
 			local new_value = tonumber(l[2])
@@ -55,8 +55,8 @@ function contraptions_mod.fs_helpers.cycling_button(meta, base, meta_name, value
 	else
 		text = val
 	end
-	local field = "fs_helpers_cycling:"..new_value..":"..meta_name
-	return base..";"..(texture_name and texture_name..";" or "")..field..";"..minetest.formspec_escape(text)..(addopts and ";"..addopts or "").."]"
+	local field = "fs_helpers_cycling:"..new_value..":"..meta_name..";"..minetest.formspec_escape(text)
+	return base..";"..(texture_name and texture_name..";" or "")..field..(addopts and ";"..addopts or "").."]"
 end
 
 function contraptions_mod.get_objects_with_square_radius(pos, rad)
@@ -65,7 +65,9 @@ function contraptions_mod.get_objects_with_square_radius(pos, rad)
   for _,object in ipairs(minetest.env:get_objects_inside_radius(pos, math.sqrt(3)*rad)) do
     if not object:is_player() and object:get_luaentity() and object:get_luaentity().name == "__builtin:item" then
       local opos = object:getpos()
-      if pos.x - rad <= opos.x and opos.x <= pos.x + rad and pos.y - rad <= opos.y and opos.y <= pos.y + rad and pos.z - rad <= opos.z and opos.z <= pos.z + rad then
+      if pos.x - rad <= opos.x and opos.x <= pos.x + rad and
+      pos.y - rad <= opos.y and opos.y <= pos.y + rad and
+      pos.z - rad <= opos.z and opos.z <= pos.z + rad then
         objs[#objs + 1] = object
       end
     end
