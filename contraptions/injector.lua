@@ -1,7 +1,7 @@
 local S = contraptions_mod.S
 
 local function inject_items (pos)
-	local meta = minetest.get_meta(pos) 
+	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	local mode = meta:get_string("mode")
 	if mode=="single items" then

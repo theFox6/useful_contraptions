@@ -66,7 +66,8 @@ end
 --ready
 local time_to_load= os.clock() - init
 if minetest.settings:get_bool("log_mods") then
-  minetest.log("action", string.format("[MOD] "..minetest.get_current_modname()..contraptions_mod.S(": loaded in %.4f s"), time_to_load))
+  minetest.log("action", string.format("[MOD] "..minetest.get_current_modname()..
+	contraptions_mod.S(": loaded in %.4f s"), time_to_load))
 else
   print(string.format("[MOD] "..minetest.get_current_modname()..contraptions_mod.S(": loaded in %.4f s"), time_to_load))
 end

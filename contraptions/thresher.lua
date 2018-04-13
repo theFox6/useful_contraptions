@@ -38,7 +38,8 @@ minetest.register_node("useful_contraptions:threshing_machine", {
 	description = S("threshing machine"),
 	_doc_items_longdesc = S("A threshing machine that makes straw and wheat seed out of wheat."),
 	_doc_items_usagehelp = S("Right-click the threshing machine to access the inventory. "..
-		"If you use the pipeworks mod there will be a button too. You can use the button to make the threshing machine inject the outputs into a tube."),
+		"If you use the pipeworks mod there will be a button too. "..
+		"You can use the button to make the threshing machine inject the outputs into a tube."),
 	tiles = {"default_chest_top.png^default_stick.png","default_chest_top.png^factory_8x8_black_square_32x32.png",
 	"default_chest_side.png","default_chest_side.png","default_chest_side.png","default_chest_side.png^farming_wheat.png"},
 	paramtype  = "light",

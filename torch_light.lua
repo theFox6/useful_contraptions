@@ -34,13 +34,14 @@ minetest.register_on_leaveplayer(function(player)
 	end
 end)
 
-minetest.register_globalstep(function(dtime)
+minetest.register_globalstep(function()
 	for _,player_name in ipairs(contraptions_mod.torch_light.players) do
 		local player = minetest.get_player_by_name(player_name)
 		if check_for_torch(player) then
 			local pos = player:getpos()
 			local rounded_pos = vector.round(pos)
-			if not(contraptions_mod.torch_light.torch_wielded[player_name]) or not(vector.equals(contraptions_mod.torch_light.player_positions[player_name],rounded_pos)) then
+			if not(contraptions_mod.torch_light.torch_wielded[player_name]) or
+			not(vector.equals(contraptions_mod.torch_light.player_positions[player_name],rounded_pos)) then
 				local is_air  = minetest.get_node_or_nil(rounded_pos)
 				if is_air == nil or (is_air ~= nil and (is_air.name == "air" or is_air.name == "useful_contraptions:light")) then
 					minetest.add_node(rounded_pos,{type="node",name="useful_contraptions:light"})
