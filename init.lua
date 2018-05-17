@@ -5,6 +5,7 @@ else
   print("[MOD] "..minetest.get_current_modname()..": loading")
 end
 
+rawset(_G,"contraptions_mod",false)
 contraptions_mod={
 	modpath=minetest.get_modpath("useful_contraptions"),
 	putter_targets={"default:chest","default:chest_locked","useful_contraptions:injector"}
