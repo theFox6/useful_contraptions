@@ -1,5 +1,3 @@
-allow_defined_top = true
-
 read_globals = {
 	"minetest", "core",
 	"dump", "vector",
@@ -9,5 +7,3 @@ read_globals = {
 	"screwdriver", "creative",
 	table = { fields = { "indexof" } }
 }
-
-ignore = {"122"}
