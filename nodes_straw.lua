@@ -53,6 +53,10 @@ contraptions_mod.allow_sit = function( player )
 	return false;
 end
 
+function contraptions_mod.attach_player(name,b)
+	rawset(default.player_attached,name,b)
+end
+
 contraptions_mod.sleep_in_bed = function( pos, node, clicker )
 	if( not( clicker ) or not( node ) or not( node.name ) or not( pos ) or not( contraptions_mod.allow_sit( clicker))) then
 		return;
@@ -66,11 +70,10 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker )
 	-- sleeping requires a bed head+foot or two sleeping mats
 	local allow_sleep = false;
 	local new_animation = 'sit';
-	local attached = default.player_attached
 
 	-- let players get back up
 	if( animation and animation.animation=="lay" ) then
-		attached[pname] = false
+		contraptions_mod.attach_player(pname,false)
 		clicker:setpos({x=pos.x,y=pos.y-0.5,z=pos.z})
 		clicker:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
 		clicker:set_physics_override(1, 1, 1)
@@ -126,7 +129,7 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker )
 			return;
 		-- no sleeping on this place
 		else
-			attached[pname] = false
+			contraptions_mod.attach_player(pname,false)
 			clicker:setpos({x=pos.x,y=pos.y-0.5,z=pos.z})
 			clicker:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
 			clicker:set_physics_override(1, 1, 1)
@@ -141,7 +144,7 @@ contraptions_mod.sleep_in_bed = function( pos, node, clicker )
 	clicker:setpos( p );
 	default.player_set_animation(clicker, new_animation, 30)
 	clicker:set_physics_override(0, 0, 0)
-	attached[pname] = true
+	contraptions_mod.attach_player(pname,true)
 	local msg
 	if( allow_sleep==true) then
 		msg = S("Aaah! What a comftable "..place_name..". A second right-click will let you sleep.")
