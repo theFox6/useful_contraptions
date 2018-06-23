@@ -15,7 +15,7 @@ dofile(contraptions_mod.modpath.."/util.lua")
 dofile(contraptions_mod.modpath.."/items.lua")
 
 --ropes out of the castles mod
-if not minetest.get_modpath("castle") and not mintest.get_modpath("ropes") then
+if not minetest.get_modpath("castle") and not minetest.get_modpath("ropes") then
   dofile(contraptions_mod.modpath.."/contraptions/rope.lua")
 end
 
