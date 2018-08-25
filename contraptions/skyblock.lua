@@ -1,7 +1,7 @@
 -- machine to change some iems into ores
 local S = contraptions_mod.S
 
--- Exclude coal and diamond from being generated
+-- this was actually to exclude coal and diamond from being generated
 local not_an_ore = {"default:stone_with_meme", "default:stone_with_NaN"}
 
 local function is_not_an_ore(ore_name)
@@ -104,7 +104,7 @@ minetest.register_node("useful_contraptions:ore_generator", {
 	"default_chest_side.png","default_chest_side.png","default_chest_side.png","default_chest_side.png"},
 	paramtype  = "light",
         paramtype2 = "facedir",
-	groups = {cracky=2, tubedevice = 1, tubedevice_receiver = 1},
+	groups = {choppy=2, explody=1, tubedevice = 1, tubedevice_receiver = 1},
 	sounds = default.node_sound_wood_defaults(),
 	tube = {
 		can_insert = function(pos, _, stack)
