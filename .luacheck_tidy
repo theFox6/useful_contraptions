@@ -9,5 +9,3 @@ read_globals = {
 	"screwdriver", "creative",
 	table = { fields = { "indexof" } }
 }
-
-ignore = {"211", "212", "213", "631"}
