@@ -127,7 +127,7 @@ function contraptions_mod.register_storage_tank(name, increment, tiles, plaintil
 			if not minetest.registered_nodes[above.name] then
 				return
 			end
-			if not minetest.registered_nodes[pos.name].buildable_to then
+			if not minetest.registered_nodes[node.name].buildable_to then
 				return
 			end
 
