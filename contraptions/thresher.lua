@@ -22,7 +22,13 @@ local cottages_formspec_treshing_machine = function(meta)
                      "label[4,0.0;"..S("Straw:").."]"..
                      "label[4,2.0;"..S("Seeds:").."]"..
                      "label[0,0;"..S("Threshing machine").."]"..
-                     "list[current_player;main;0,4;8,4;]";
+                     "list[current_player;main;0,4;8,4;]"..
+                     "listring[current_player;main]"..
+		     "listring[current_name;main]"..
+		     "listring[current_player;main]"..
+		     "listring[current_name;straw]"..
+		     "listring[current_player;main]"..
+		     "listring[current_name;seeds]"
   if minetest.get_modpath("pipeworks") then
     myFormspec = myFormspec..contraptions_mod.fs_helpers.cycling_button(meta, "button[1,2;3,3", "injectMode",
       {S("tube injection - off"),

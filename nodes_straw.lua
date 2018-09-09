@@ -224,7 +224,13 @@ local cottages_formspec_treshing_floor =
 					"label[0,-0.5;"..S("Threshing floor").."]"..
 					"label[0,2.5;"..S("Punch threshing floor with a stick").."]"..
 					"label[0,3.0;"..S("to get straw and seeds from wheat.").."]"..
-                                "list[current_player;main;0,4;8,4;]";
+                                "list[current_player;main;0,4;8,4;]"..
+				"listring[current_player;main]"..
+				"listring[current_name;harvest]"..
+				"listring[current_player;main]"..
+				"listring[current_name;straw]"..
+				"listring[current_player;main]"..
+				"listring[current_name;seeds]"
 
 minetest.register_node(":cottages:threshing_floor", {
 	drawtype = "nodebox",
@@ -290,7 +296,12 @@ minetest.register_node(":cottages:threshing_floor", {
                 return true;
         end,
 
-	allow_metadata_inventory_move = function(pos, _, _, _, _, count, player)
+	allow_metadata_inventory_move = function(pos, _, _, to_list, _, count, player)
+		if(    to_list=='straw'
+		    or to_list=='seeds'
+		    or to_list=='harvest' ) then
+			return 0;
+		end
 		local meta = minetest.get_meta(pos)
 		if( not( cottages_can_use( meta, player ))) then
                         return 0
@@ -474,7 +485,12 @@ local cottages_handmill_formspec = "size[8,8]"..
 					"label[0,-0.3;"..S("Mill").."]"..
 					"label[0,2.5;"..S("Punch this hand-driven mill").."]"..
 					"label[0,3.0;"..S("to convert wheat seeds into flour.").."]"..
-                                "list[current_player;main;0,4;8,4;]";
+                                "list[current_player;main;0,4;8,4;]"..
+				"listring[current_player;main]"..
+				"listring[current_name;seeds]"..
+				"listring[current_player;main]"..
+				"listring[current_name;flour]"
+				
 
 minetest.register_node(":cottages:handmill", {
 	description = S("mill, powered by punching"),
