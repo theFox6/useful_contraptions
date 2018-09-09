@@ -490,7 +490,6 @@ local cottages_handmill_formspec = "size[8,8]"..
 				"listring[current_name;seeds]"..
 				"listring[current_player;main]"..
 				"listring[current_name;flour]"
-				
 
 minetest.register_node(":cottages:handmill", {
 	description = S("mill, powered by punching"),

@@ -10,4 +10,4 @@ read_globals = {
 	table = { fields = { "indexof" } }
 }
 
-ignore = {"211", "212", "213", "631"}
+ignore = {"211", "212", "213", "611", "631"}
