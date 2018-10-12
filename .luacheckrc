@@ -1,13 +1,30 @@
 allow_defined_top = true
 
 read_globals = {
-	"minetest", "core",
-	"dump", "vector",
-	"VoxelManip", "VoxelArea",
-	"default", "ItemStack", "luaentity",
-	"pipeworks", "mesecon", "intllib",
-	"screwdriver", "creative",
-	table = { fields = { "indexof" } }
+	"dump",
+	"intllib",
+	"minetest",
+	"vector",
+	"VoxelManip",
+	"VoxelArea",
+	"default",
+	"ItemStack",
+	"luaentity",
+	"pipeworks",
+	"mesecon",
+	"screwdriver",
+	"creative",
+	table = { fields = {
+		"indexof",
+	} }
 }
 
-ignore = {"211", "212", "213", "611", "631"}
+ignore = {
+	"211",
+	"212",
+	"213",
+	"611",
+	"612",
+	"621"
+	"631"
+}
