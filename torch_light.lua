@@ -12,7 +12,6 @@ end)
 
 minetest.register_globalstep(function()
 	for _,player in ipairs(minetest.get_connected_players()) do
-		local player_name = player:get_player_name()
 		if check_for_torch(player) then
 			if player:get_meta():get_string("torch_wielded")~="true" then
 				--add glow
