@@ -1,6 +1,6 @@
 local S = contraptions_mod.S
 
-minetest.register_node(":factoy:vacuum_on", {
+minetest.register_node(":factory:vacuum_on", {
 	description = S("Vacuum"),
 	_doc_items_longdesc = S("A vacuum that collects items in its range."),
 	_doc_items_usagehelp = S("Right-click the vacuum or send a mesecon signal to it, to switch it on or off."),
@@ -12,7 +12,7 @@ minetest.register_node(":factoy:vacuum_on", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = true,
-	drop="factoy:vacuum_off",
+	drop="factory:vacuum_off",
 	legacy_facedir_simple = true,
 	node_box = {
 		type = "fixed",
@@ -48,15 +48,15 @@ minetest.register_node(":factoy:vacuum_on", {
 	},
 	mesecons = {effector = {
 		action_off = function(pos, node)
-			minetest.swap_node(pos, {name = "factoy:vacuum_off", param2 = node.param2})
+			minetest.swap_node(pos, {name = "factory:vacuum_off", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function(pos, node)
-		minetest.swap_node(pos, {name = "factoy:vacuum_off", param2 = node.param2})
+		minetest.swap_node(pos, {name = "factory:vacuum_off", param2 = node.param2})
 	end,
 })
 
-minetest.register_node(":factoy:vacuum_off", {
+minetest.register_node(":factory:vacuum_off", {
 	description = S("Vacuum"),
 	_doc_items_longdesc = S("A vacuum that collects items in its range."),
 	_doc_items_usagehelp = S("Right-click the vacuum or send a mesecon signal to it, to switch it on or off."),
@@ -103,16 +103,16 @@ minetest.register_node(":factoy:vacuum_off", {
 	},
 	mesecons = {effector = {
 		action_on = function(pos, node)
-			minetest.swap_node(pos, {name = "factoy:vacuum_on", param2 = node.param2})
+			minetest.swap_node(pos, {name = "factory:vacuum_on", param2 = node.param2})
 		end
 	}},
 	on_rightclick = function(pos, node)
-		minetest.swap_node(pos, {name = "factoy:vacuum_on", param2 = node.param2})
+		minetest.swap_node(pos, {name = "factory:vacuum_on", param2 = node.param2})
 	end,
 })
 
 minetest.register_abm({
-	nodenames = {"factoy:vacuum_on"},
+	nodenames = {"factory:vacuum_on"},
 	neighbors = nil,
 	interval = 1,
 	chance = 1,
@@ -121,7 +121,7 @@ minetest.register_abm({
 		for _,obj in ipairs(all_objects) do
 			if not obj:is_player() and obj:get_luaentity() and
 			(obj:get_luaentity().name == "__builtin:item" or
-			obj:get_luaentity().name == ":factoy:moving_item") then
+			obj:get_luaentity().name == ":factory:moving_item") then
 				obj:moveto({x = pos.x, y = pos.y - 0.5, z = pos.z})
 			end
 		end
@@ -129,10 +129,10 @@ minetest.register_abm({
 })
 
 minetest.register_craft({
-	output = "factoy:vacuum_off",
+	output = "factory:vacuum_off",
 	recipe = {
-		{"default:steel_ingot", 	"factoy:fan_on", 			"default:steel_ingot"},
-		{"factoy:small_steel_gear","factoy:small_gold_gear", 		"factoy:small_steel_gear"},
+		{"default:steel_ingot", 	"factory:fan_on", 			"default:steel_ingot"},
+		{"factory:small_steel_gear","factory:small_gold_gear", 		"factory:small_steel_gear"},
 		{"", 						"default:steel_ingot", 			""}
 	}
 })
