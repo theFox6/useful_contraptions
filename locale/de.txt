@@ -3,6 +3,16 @@
 ### init.lua ###
 : loaded in %.4f s = : geladen in %.4f s
 
+### lab_furnace.lua ###
+Advanced Furnace is empty = Fortschrittlicher Ofen ist leer
+100% (output full) = 100% (Ausgabe voll)
+@1% = @1%
+Not cookable = Nicht Koch- oder Schmelzbar
+Empty = Leer
+Advanced Furnace active = Fortschrittlicher Ofen aktiv
+Advanced Furnace inactive = Fortschrittlicher Ofen inaktiv
+Advanced Furnace = Fortschrittlicher Ofen
+
 ### nodes_straw.lua ###
 layer of straw = Strohschicht
 straw bale = Strohballen

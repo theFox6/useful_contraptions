@@ -14,6 +14,9 @@ contraptions_mod={
 dofile(contraptions_mod.modpath.."/util.lua")
 dofile(contraptions_mod.modpath.."/items.lua")
 
+--a more convenient furnace
+dofile(contraptions_mod.modpath.."/contraptions/lab_furnace.lua")
+
 --ropes out of the castles mod
 if not minetest.get_modpath("castle") and not minetest.get_modpath("ropes") then
   dofile(contraptions_mod.modpath.."/contraptions/rope.lua")
@@ -49,7 +52,7 @@ end
 --ore generator as help for skyblock
 dofile(contraptions_mod.modpath.."/contraptions/skyblock.lua")
 
-if minetest.setting_getbool("uselful_contraptions_torch_light") ~= false then
+if minetest.settings:get_bool("uselful_contraptions_torch_light") ~= false then
 	dofile(contraptions_mod.modpath.."/torch_light.lua")
 end
 

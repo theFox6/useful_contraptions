@@ -1,12 +1,21 @@
--- Boilerplate to support localized strings if intllib mod is installed.
-if minetest.get_modpath( "intllib" ) and intllib then
-	contraptions_mod.S = intllib.Getter(minetest.get_current_modname())
+-- Boilerplate to support localized strings
+if minetest.get_translator then
+	contraptions_mod.S = minetest.get_translator(minetest.get_current_modname())
 else
 	contraptions_mod.S = function(s) return s end
 end
 
+function contraptions_mod.extend(base, extension)
+  for i,v in pairs(base) do
+    if extension[i] == nil then
+      extension[i] = v
+    end
+  end
+  return extension
+end
+
 --tube injection function
-if pipeworks then
+if minetest.global_exists("pipeworks") then
   if pipeworks.tube_inject_item then
     contraptions_mod.tube_inject_item = pipeworks.tube_inject_item
   else

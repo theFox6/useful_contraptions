@@ -43,4 +43,26 @@ if not minetest.get_modpath("factory") then
     }
   })
 --]]
+  minetest.register_craftitem(":factory:piston", {
+    description = S("Piston"),
+    inventory_image = "factory_piston.png",
+    groups = { piston_craftable = 1 }
+  })
+  minetest.register_craft({
+    output = "factory:piston",
+    recipe = {
+      {"group:wood", "group:wood", "group:wood"},
+      {"group:stone", "default:steel_ingot", "group:stone"},
+      {"group:stone", "", "group:stone"}
+    }
+  })
+  if minetest.get_modpath("mesecons_pistons") then
+    minetest.register_craft({
+      output = "mesecons_pistons:piston_normal_off",
+      recipe = {
+        {"factory:piston"},
+        {"group:mesecon_conductor_craftable"},
+      }
+    })
+  end
 end

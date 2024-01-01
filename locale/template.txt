@@ -3,6 +3,16 @@
 ### init.lua ###
 : loaded in %.4f s = 
 
+### lab_furnace.lua ###
+Advanced Furnace is empty = 
+100% (output full) = 
+@1% = 
+Not cookable = 
+Empty = 
+Advanced Furnace active = 
+Advanced Furnace inactive = 
+Advanced Furnace = 
+
 ### nodes_straw.lua ###
 layer of straw = 
 straw bale = 

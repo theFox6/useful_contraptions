@@ -15,7 +15,7 @@ minetest.register_on_joinplayer(function(player)
 	local player_name = player:get_player_name()
 	table.insert(contraptions_mod.torch_light.players, player_name)
 	contraptions_mod.torch_light.torch_wielded[player_name] = check_for_torch(player)
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local rounded_pos = vector.round(pos)
 	rounded_pos.y = rounded_pos.y + 1
 	if not check_for_torch(player) then
@@ -44,7 +44,7 @@ minetest.register_globalstep(function()
 	for _,player_name in ipairs(contraptions_mod.torch_light.players) do
 		local player = minetest.get_player_by_name(player_name)
 		if check_for_torch(player) then
-			local pos = player:getpos()
+			local pos = player:get_pos()
 			local rounded_pos = vector.round(pos)
 			rounded_pos.y = rounded_pos.y + 1
 			if not(contraptions_mod.torch_light.torch_wielded[player_name]) or
@@ -64,7 +64,7 @@ minetest.register_globalstep(function()
 			end
 				contraptions_mod.torch_light.torch_wielded[player_name] = true;
 		elseif contraptions_mod.torch_light.torch_wielded[player_name] then
-			local pos = player:getpos()
+			local pos = player:get_pos()
 			local rounded_pos = vector.round(pos)
 			rounded_pos.y = rounded_pos.y + 1
 			repeat
