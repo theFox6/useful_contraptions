@@ -386,6 +386,35 @@ local lab_furnace_base = {
 		minetest.remove_node(pos)
 		return drops
 	end,
+	--pipeworks support
+	after_dig_node = minetest.global_exists("pipeworks") and pipeworks.after_dig or nil,
+	on_rotate = minetest.global_exists("pipeworks") and pipeworks.on_rotate or nil,
+	tube = {
+		insert_object = function(pos, _, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			local timer = minetest.get_node_timer(pos)
+			if not timer:is_started() then
+				timer:start(1.0)
+			end
+			if direction.y == 1 then
+				return inv:add_item("fuel", stack)
+			else
+				return inv:add_item("src", stack)
+			end
+		end,
+		can_insert = function(pos, _, stack, direction)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
+			if direction.y == 1 then
+				return inv:room_for_item("fuel", stack)
+			else
+				return inv:room_for_item("src", stack)
+			end
+		end,
+		input_inventory = "dst",
+		connect_sides = {left = 1, right = 1, back = 1, bottom = 1, top = 1}
+	},
 }
 
 minetest.register_node("useful_contraptions:lab_furnace", contraptions_mod.extend(lab_furnace_base, {
@@ -394,7 +423,7 @@ minetest.register_node("useful_contraptions:lab_furnace", contraptions_mod.exten
 		"contraptions_lab_furnace_side.png", "contraptions_lab_furnace_side.png",
 		"contraptions_lab_furnace_back.png", "contraptions_lab_furnace_front.png"
 	},
-	groups = {cracky = 1, level = 2},
+	groups = {cracky = 1, level = 2, tubedevice = 1, tubedevice_receiver = 1},
 
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -405,6 +434,9 @@ minetest.register_node("useful_contraptions:lab_furnace", contraptions_mod.exten
 		furnace_node_timer(pos, 0)
 	end,
 	after_place_node = function(pos, _, itemstack)
+		if minetest.global_exists("pipeworks") then
+			pipeworks.after_place(pos)
+		end
 		local fuel_time = itemstack:get_meta():get_float("fuel_time") or 0
 		local meta = minetest.get_meta(pos)
 		meta:set_float("fuel_time", fuel_time)
@@ -442,7 +474,11 @@ minetest.register_node("useful_contraptions:lab_furnace_active", contraptions_mo
 	},
 	light_source = 8,
 	drop = "useful_contraptions:lab_furnace",
-	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	groups = {
+		cracky = 1, level = 2,
+		tubedevice = 1, tubedevice_receiver = 1,
+		not_in_creative_inventory = 1
+	},
 	on_destruct = function(pos)
 		stop_furnace_sound(pos)
 	end,
@@ -457,4 +493,39 @@ minetest.register_craft({
 	}
 })
 
+if minetest.global_exists("tubelib") then
+	local function is_source(pos,meta,  item)
+		local inv = minetest.get_inventory({type="node", pos=pos})
+		local name = item:get_name()
+		if meta:get_string("src_item") == name then
+			return true
+		elseif inv:get_stack("src", 1):get_name() == name then
+			meta:set_string("src_item", name)
+			return true
+		end
+		return false
+	end
+
+	tubelib.register_node("useful_contraptions:lab_furnace", {"useful_contraptions:lab_furnace_active"}, {
+		on_pull_item = function(pos, side)
+			local meta = minetest.get_meta(pos)
+			return tubelib.get_item(meta, "dst")
+		end,
+		on_push_item = function(pos, side, item)
+			local meta = minetest.get_meta(pos)
+			minetest.get_node_timer(pos):start(1.0)
+			if is_source(pos, meta, item) then
+				return tubelib.put_item(meta, "src", item)
+			elseif minetest.get_craft_result({method="fuel", width=1, items={item}}).time ~= 0 then
+				return tubelib.put_item(meta, "fuel", item)
+			else
+				return tubelib.put_item(meta, "src", item)
+			end
+		end,
+		on_unpull_item = function(pos, side, item)
+			local meta = minetest.get_meta(pos)
+			return tubelib.put_item(meta, "dst", item)
+		end,
+	})
+end
 
