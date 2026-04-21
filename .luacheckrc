@@ -1,8 +1,8 @@
 allow_defined_top = true
 
 read_globals = {
+	"core",
 	"dump",
-	"intllib",
 	"minetest",
 	"vector",
 	"VoxelManip",
@@ -14,6 +14,7 @@ read_globals = {
 	"mesecon",
 	"screwdriver",
 	"creative",
+	"tubelib",
 	table = { fields = {
 		"indexof",
 	} }
