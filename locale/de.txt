@@ -102,3 +102,9 @@ Itemwise = Einzelstuecke
 Stackwise = Ganzer Stapel
 A machine that injects items put into it into a tube. =  Eine Machine die Gegenstaende in Rohre injiziert.
 Right-click the injector to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = Rechtsklicke den Injektor um das inventar zu sehen. Mit dem Button im Inventar kannst du einstellen, ob Einzelstuecke oder ganze Stapel injiziert werden sollen.
+
+
+### cobble_generator.lua ###
+Cobblestone Generator = Bruchstein Generator
+A machine that generates cobblestone. = Eine Maschine die Bruchstein generiert.
+Right-click the generator to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = Rechtsklicke den Generator um das inventar zu sehen. Mit dem Button im Inventar kannst du einstellen, ob Einzelstuecke oder ganze Stapel injiziert werden sollen.

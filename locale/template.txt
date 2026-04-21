@@ -102,3 +102,8 @@ Stackwise =
 Itemwise = 
 A machine that injects items put into it into a tube. = 
 Right-click the injector to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = 
+
+### cobble_generator.lua ###
+Cobblestone Generator =
+A machine that generates cobblestone. =
+Right-click the generator to access inventory. With the button in the inventory you can change between injecting whole stacks or single items. = 
