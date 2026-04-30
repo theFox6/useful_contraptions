@@ -35,17 +35,6 @@ local function inject_items (pos, meta, inv)
 	end
 end
 
-if core.get_modpath("mesecons_detector") and core.get_modpath("mesecons_microcontroller") and core.get_modpath("pipeworks") then
-	core.register_craft({
-		output = 'useful_contraptions:cobble_generator 1',
-		recipe = {
-			{'mesecons_microcontroller:microcontroller', 'mesecons_detector:object_detector_off','default:glass'},
-			{'bucket:bucket_water', '','bucket:bucket_lava'},
-			{'pipeworks:conductor_tube_off_1', 'pipeworks:nodebreaker','default:chest'},
-		}
-	})
-end
-
 local function set_cgen_formspec(meta)
 	local is_stack = meta:get_string("mode") == "whole stacks"
 	meta:set_string("formspec",
@@ -127,3 +116,14 @@ core.register_abm({
 		end
 	end,
 })
+
+if core.get_modpath("mesecons_detector") and core.get_modpath("mesecons_microcontroller") and core.get_modpath("pipeworks") then
+	core.register_craft({
+		output = 'useful_contraptions:cobble_generator 1',
+		recipe = {
+			{'mesecons_microcontroller:microcontroller0000', 'mesecons_detector:node_detector_off','default:glass'},
+			{'bucket:bucket_water', '', 'bucket:bucket_lava'},
+			{'pipeworks:conductor_tube_off_1','pipeworks:nodebreaker_off','default:chest'}
+		}
+	})
+end

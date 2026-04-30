@@ -1,2 +1,5 @@
 #If enabled, torches will emit light if they are wielded.
 uselful_contraptions_torch_light (Enable torchlight) bool true
+
+#The ore generator takes any items and has a low chance to give back ore. It is only available in the creative inventory.
+uselful_contraptions_ore_generator (Enable Ore Generator) bool false

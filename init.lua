@@ -52,9 +52,10 @@ if core.get_modpath("pipeworks") then
   end
 end
 
---ore generator as help for skyblock
---TODO: lock behind setting, since sieve mod exists
-dofile(contraptions_mod.modpath.."/contraptions/skyblock.lua")
+--ore generator as help for skyblock (can be replaced by gravel sieve)
+if core.settings:get_bool("uselful_contraptions_ore_generator") == true then
+  dofile(contraptions_mod.modpath.."/contraptions/skyblock.lua")
+end
 
 if core.settings:get_bool("uselful_contraptions_torch_light") ~= false then
 	dofile(contraptions_mod.modpath.."/torch_light.lua")
